@@ -6,7 +6,8 @@ const nextConfig: NextConfig = {
   // 注意：使用 `next/image` 组件时，需要禁用其优化功能
   images: {
     unoptimized: true
-  }
+  },
+  distDir: 'assets'
 };
 
 export default nextConfig;
