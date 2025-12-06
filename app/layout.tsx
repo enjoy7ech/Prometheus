@@ -15,12 +15,7 @@ export default function RootLayout({
   return (
     <html lang="zhCN">
       <head></head>
-      <body>
-        {children}
-        <div className="loading-mask">
-          <img id="core" src="/core.png" alt="" />
-        </div>
-      </body>
+      <body>{children}</body>
       <Script src="/script/mask-loader.js" type="module"></Script>
     </html>
   );
