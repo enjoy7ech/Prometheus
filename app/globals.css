@@ -4,8 +4,44 @@
   --bg-color: #0e100f;
 }
 
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+@font-face {
+  font-family: 'f_hyk';
+  src: url(/font/Hangyaku.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'f_qkh';
+  src: url(/font/ZCOOLQingKeHuangYou-Regular.ttf) format('truetype');
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  color: #fff;
+  font-size: 32px;
+  position: fixed;
+  top: 0;
+  height: 10vh;
+  left: 2em;
+  right: 2em;
+  z-index: 19999;
+
+  .title {
+    cursor: pointer;
+    font-size: 70px;
+    font-weight: normal;
+    font-family: f_hyk;
+  }
 }
 
 .loading-mask {

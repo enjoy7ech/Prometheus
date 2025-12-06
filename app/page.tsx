@@ -7,6 +7,7 @@ import { whenDOMReady } from '@/utils/helper';
 import { useEffect, useRef } from 'react';
 import Footer from './ui/Footer';
 import LoadingMask, { LoadingMaskHandle } from './ui/LoadingMask';
+import PhotoGallery from './ui/PhotoGallery';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -26,8 +27,6 @@ export default function Home() {
         });
       })
       .then(() => {
-        console.log(123213, maskRef);
-
         // create the scrollSmoother before your scrollTriggers
         ScrollSmoother.create({
           ease: '.power2',
@@ -106,8 +105,7 @@ export default function Home() {
 
               tl.seek(vd.currentTime).pause();
             }
-
-            if (self.progress > 0.01) {
+            if (self.progress > 0.1) {
               if (self.direction > 0) {
                 gsap.to('.header', { yPercent: -100 });
               } else {
@@ -128,13 +126,6 @@ export default function Home() {
           <div id="scroll-trigger-container" className="flex flex-col">
             <video className="bg-video" id="banner-v" src="/banner-v.webm" muted preload="auto"></video>
 
-            <section id="nav" className="header flex items-center">
-              <div className="title">ESCAPE</div>
-              <div className="ml-auto">
-                <a href="">关于我</a>
-              </div>
-            </section>
-
             <section className="sec sec-1" data-vd-start="0.5" data-vd-end="2.8">
               <p>只有失败过的人</p>
               <p>才懂得我们为什么需要旅行</p>
@@ -154,6 +145,7 @@ export default function Home() {
               <h1>为什么活着</h1>
             </section>
           </div>
+          <PhotoGallery></PhotoGallery>
           <Footer></Footer>
         </div>
       </div>

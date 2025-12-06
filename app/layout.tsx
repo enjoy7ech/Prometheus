@@ -1,6 +1,7 @@
-import type { Metadata } from 'next';
 import './globals.css';
+import type { Metadata } from 'next';
 import Script from 'next/script';
+import Header from './ui/Header';
 
 export const metadata: Metadata = {
   title: 'EASCAPE',
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="zhCN">
       <head></head>
-      <body>{children}</body>
+      <body>
+        <Header></Header>
+        {children}
+      </body>
       <Script src="/script/mask-loader.js" type="module"></Script>
     </html>
   );
