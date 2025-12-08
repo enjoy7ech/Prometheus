@@ -4,14 +4,16 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { whenDOMReady } from '@/utils/helper';
-import { useEffect, useRef } from 'react';
+import { use, useEffect, useRef } from 'react';
 import Footer from './ui/Footer';
 import LoadingMask, { LoadingMaskHandle } from './ui/LoadingMask';
-import PhotoGallery from './ui/PhotoGallery';
+import PhotoGallery from './ui/PhotoGallery/index';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function Home() {
+  const container = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     whenDOMReady()
       .then(() => {
@@ -21,10 +23,9 @@ export default function Home() {
             resolve(1);
           }
           vd.oncanplaythrough = () => {
-            setTimeout(() => {
-              maskRef.current?.hide();
+            maskRef.current?.hide().then(() => {
               resolve(1);
-            }, 2000);
+            });
           };
         });
       })
@@ -88,6 +89,16 @@ export default function Home() {
             ease: '.bounce.out',
             duration: 0.5
           },
+          vd.duration - 1
+        );
+
+        tl.to(
+          '.gallery-container',
+          {
+            opacity: 1,
+            ease: 'power2.in',
+            duration: 0.5
+          },
           vd.duration - 0.5
         );
 
@@ -125,30 +136,32 @@ export default function Home() {
     <>
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <div id="scroll-trigger-container" className="flex flex-col">
+          <div id="scroll-trigger-container" ref={container} className="flex flex-col">
             <video className="bg-video" id="banner-v" src="/banner-v.webm" muted preload="auto"></video>
 
-            <section className="sec sec-1" data-vd-start="0.5" data-vd-end="2.8">
+            <section className="sec sec-1" data-vd-start="0.3" data-vd-end="2.3">
               <p>只有失败过的人</p>
               <p>才懂得我们为什么需要旅行</p>
             </section>
 
-            <section className="sec sec-2" data-vd-start="3.2" data-vd-end="5.4">
+            <section className="sec sec-2" data-vd-start="2.4" data-vd-end="4.4">
               <p>旅行是迷失</p>
               <p>也是为了找到方向</p>
             </section>
 
-            <section className="sec sec-3" data-vd-start="6" data-vd-end="7.5">
+            <section className="sec sec-3" data-vd-start="4.6" data-vd-end="6.3">
               <p>记住我们为什么出发</p>
               <p>也是为了记住我们</p>
             </section>
 
-            <section className="sec sec-3" data-vd-start="8.2" data-vd-end="9.8">
+            <section className="sec sec-3" data-vd-start="6.5" data-vd-end="9.7">
               <h1>为什么活着</h1>
             </section>
           </div>
-          <PhotoGallery></PhotoGallery>
           <Footer></Footer>
+        </div>
+        <div className="gallery-container">
+          <PhotoGallery></PhotoGallery>
         </div>
       </div>
       <LoadingMask ref={maskRef}></LoadingMask>

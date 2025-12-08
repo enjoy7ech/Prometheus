@@ -1,6 +1,5 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import Header from './ui/Header';
 
 export const metadata: Metadata = {

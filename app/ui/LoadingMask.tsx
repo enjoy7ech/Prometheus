@@ -6,18 +6,26 @@ import { VFX } from '@vfx-js/core';
 
 export type LoadingMaskHandle = {
   show: () => void;
-  hide: () => void;
+  hide: () => Promise<void>;
 };
 
 export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
-  const mask = useRef(null);
+  const mask = useRef<HTMLDivElement>(null);
   useImperativeHandle(ref, (): LoadingMaskHandle => {
     return {
       show() {
         gsap.to(mask.current, { autoAlpha: 1 });
       },
       hide() {
-        // gsap.to(mask.current, { autoAlpha: 0 });
+        return new Promise((resolve) => {
+          gsap.to(mask.current, {
+            duration: 0.5,
+            onComplete() {
+              mask.current?.remove();
+              resolve();
+            }
+          });
+        });
       }
     };
   }, []);

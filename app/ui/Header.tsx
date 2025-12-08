@@ -6,9 +6,7 @@ export default function Header() {
       <div className="title" onClick={() => (window.location.href = '/')}>
         ESCAPE
       </div>
-      <div className="ml-auto">
-        <a href="">Todo...</a>
-      </div>
+      <div className="ml-auto">{/* <a href="">Todo...</a> */}</div>
     </header>
   );
 }

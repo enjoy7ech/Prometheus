@@ -1,0 +1,115 @@
+.gallery {
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  flex: 1;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 40px;
+  bottom: 20px;
+  max-width: 40vw;
+
+  .position {
+    font-size: calc(min(3vw, 32px));
+    font-weight: 600;
+    color: #fff;
+    margin-top: auto;
+    position: relative;
+    white-space: nowrap;
+    display: flex;
+    align-items: baseline;
+    &::before {
+      position: absolute;
+      top: -16px;
+      content: '';
+      width: 50px;
+      height: 8px;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+  }
+
+  .latlng {
+    font-size: calc(min(1vw, 14px));
+    font-weight: 300;
+    color: #fff;
+    position: relative;
+    white-space: nowrap;
+    font-style: oblique;
+  }
+  .title {
+    font-size: calc(min(10vw, 124px));
+    font-weight: 900;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .title2 {
+    font-size: calc(min(5vw, 84px));
+    font-weight: 900;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .description {
+    line-height: 1.2;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+  }
+}
+
+.thumbnail {
+  /* display: flex; */
+  /* position: absolute; */
+  /* right: 5vw; */
+  /* gap: 0 20px; */
+
+  .photo {
+    z-index: 1;
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+    background-image: var(--img);
+    background-size: cover;
+    background-position: center;
+    box-shadow: 6px 6px 10px 2px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    position: fixed;
+    right: calc(240px * (2 - var(--idx)) + 140px);
+    top: calc(50vh - 150px);
+
+    .position {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      margin-top: auto;
+      position: relative;
+      &::before {
+        position: absolute;
+        top: -8px;
+        content: '';
+        width: 25px;
+        height: 4px;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+    }
+    .title {
+      font-weight: 900;
+      font-size: 32px;
+      color: #fff;
+      padding: 0 6px;
+    }
+    .title2 {
+      font-weight: 900;
+      font-size: 20px;
+      color: #fff;
+      padding: 0 6px;
+    }
+  }
+}

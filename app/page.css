@@ -30,7 +30,7 @@ body::-webkit-scrollbar-button {
 
   .sec {
     font-family: f_qkh;
-    font-size: 50px;
+    font-size: calc(min(50px, 3vw));
     color: #fff;
     position: fixed;
     mix-blend-mode: overlay;
@@ -42,11 +42,11 @@ body::-webkit-scrollbar-button {
 
   .sec-1 {
     top: 20vh;
-    left: 15vw;
+    left: 5vw;
   }
 
   .sec-2 {
-    top: 55vh;
+    bottom: 30vh;
     right: 15vw;
   }
 
@@ -55,4 +55,15 @@ body::-webkit-scrollbar-button {
     left: 50vw;
     transform: translateX(-50%);
   }
+}
+
+.gallery-container {
+  position: fixed;
+  top: 10vh;
+  left: 0;
+  width: 100vw;
+  height: 80vh;
+  z-index: 0;
+  opacity: 0;
+  display: flex;
 }
