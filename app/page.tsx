@@ -21,8 +21,10 @@ export default function Home() {
             resolve(1);
           }
           vd.oncanplaythrough = () => {
-            maskRef.current?.hide();
-            resolve(1);
+            setTimeout(() => {
+              maskRef.current?.hide();
+              resolve(1);
+            }, 2000);
           };
         });
       })

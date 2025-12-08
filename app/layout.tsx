@@ -20,7 +20,6 @@ export default function RootLayout({
         <Header></Header>
         {children}
       </body>
-      <Script src="/script/mask-loader.js" type="module"></Script>
     </html>
   );
 }

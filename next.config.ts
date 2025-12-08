@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true
   },
-  distDir: 'assets'
+  distDir: 'build'
 };
 
 export default nextConfig;
