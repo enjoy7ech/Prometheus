@@ -57,10 +57,4 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  .text {
-    color: #fff;
-    font-size: 466px;
-    font-weight: normal;
-    font-family: f_hyk;
-  }
 }
