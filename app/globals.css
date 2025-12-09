@@ -39,7 +39,7 @@ body {
   height: 10vh;
   left: 2em;
   right: 2em;
-  z-index: 19999;
+  z-index: 9998;
 
   .title {
     cursor: pointer;

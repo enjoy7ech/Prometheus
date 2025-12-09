@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { whenDOMReady } from '@/utils/helper';
-import { use, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Footer from './ui/Footer';
 import LoadingMask, { LoadingMaskHandle } from './ui/LoadingMask';
 import PhotoGallery from './ui/PhotoGallery/index';
@@ -16,6 +16,9 @@ export default function Home() {
 
   useEffect(() => {
     whenDOMReady()
+      .then(async () => {
+        await document.fonts.ready;
+      })
       .then(() => {
         return new Promise((resolve) => {
           const vd = document.querySelector('#banner-v') as HTMLVideoElement;
