@@ -1,7 +1,7 @@
 .gallery {
   background-image: var(--img);
   background-size: cover;
-  background-position: center;
+  background-position: var(--bgPos, 'center');
   flex: 1;
 }
 

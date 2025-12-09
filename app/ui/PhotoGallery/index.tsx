@@ -16,6 +16,7 @@ export default function PhotoGallery() {
   interface Photo {
     id: number;
     url: string;
+    bgPos: string;
     position: string;
     title: string;
     title2: string;
@@ -25,6 +26,13 @@ export default function PhotoGallery() {
   }
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [active, setActive] = useState<number>(0);
+  // 创建 ref 来保存最新状态
+  const activeRef = useRef(active);
+
+  // 同步状态到 ref（每次渲染后更新）
+  useEffect(() => {
+    activeRef.current = active;
+  });
 
   const gallery = useRef<HTMLDivElement>(null);
   const pEls = useRef<HTMLDivElement[]>([]);
@@ -40,6 +48,7 @@ export default function PhotoGallery() {
           width: '100vw',
           height: '80vh',
           boxShadow: 'none',
+          backgroundPosition: photos[index].bgPos,
           onStart: () => {
             pEls.current[index].style.zIndex = '0';
           },
@@ -64,11 +73,13 @@ export default function PhotoGallery() {
       const arr = text.split('\n');
 
       const ps = [];
-      for (let i = 0; i < arr.length; i += 7) {
-        const [url, position, title, title2, latlng, description, tip] = arr.slice(i, i + 7);
+      const infoSize = 8;
+      for (let i = 0; i < arr.length; i += infoSize) {
+        const [url, bgPos, position, title, title2, latlng, description, tip] = arr.slice(i, i + infoSize);
         ps.push({
-          id: i / 7,
+          id: i / infoSize,
           url,
+          bgPos,
           position,
           title,
           title2,
@@ -81,17 +92,13 @@ export default function PhotoGallery() {
     });
   }, []);
 
-  //   useEffect(() => {
-  //     if(allPhotos.length){}
-  //   }, [allPhotos]);
-
   return (
     photos.length > 0 &&
     active != undefined && (
       <div
         ref={gallery}
         className={styles.gallery}
-        style={{ '--img': `url(${photos[active].url})` } as React.CSSProperties}
+        style={{ '--img': `url(${photos[active].url})`, '--bgPos': photos[active].bgPos } as React.CSSProperties}
       >
         <div className={styles.info}>
           <div className={styles.position}>
