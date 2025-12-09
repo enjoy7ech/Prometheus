@@ -18,13 +18,10 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
       },
       hide() {
         return new Promise((resolve) => {
-          gsap.to(mask.current, {
-            duration: 0.5,
-            onComplete() {
-              mask.current?.remove();
-              resolve();
-            }
-          });
+          setTimeout(() => {
+            mask.current?.remove();
+            resolve();
+          }, 500);
         });
       }
     };
