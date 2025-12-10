@@ -86,6 +86,7 @@
     position: fixed;
     right: calc(240px * (2 - var(--idx)) + 140px);
     top: calc(50vh - 150px);
+    cursor: pointer;
 
     .position {
       font-size: 16px;
