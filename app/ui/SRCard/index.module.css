@@ -1,0 +1,219 @@
+@keyframes set {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+}
+
+.maskLayer {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0, 100vmin);
+  --pointer-x: 0;
+  --pointer-y: 0;
+  --parallax-img-x: 5%;
+  --parallax-img-y: 5%;
+  --rotate-x: 15deg;
+  --rotate-y: -10deg;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  color: #fff;
+  z-index: 11;
+}
+
+@layer base {
+  .cardBox {
+    --ratio-x: 0;
+    --ratio-y: 0;
+    --border: 18px;
+    --border-color: hsl(0 0% 25%);
+    position: relative;
+    perspective: 1600px;
+    cursor: pointer;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    user-select: none;
+
+    *,
+    *::before,
+    *::after {
+      transform-style: preserve-3d;
+    }
+
+    &:hover {
+      transition: transform 0s;
+      transform: rotateX(calc(var(--pointer-y) * var(--rotate-x))) rotateY(calc(var(--pointer-x) * var(--rotate-y)));
+      animation: set backwards 0.2s;
+
+      /* .spotlight::before {
+        opacity: 1;
+      } */
+      .refraction {
+        opacity: 1;
+      }
+    }
+
+    .img {
+      object-fit: contain;
+      transition: transform 0s;
+      /* translate: calc(var(--pointer-x) * var(--parallax-img-x)) calc(var(--pointer-y) * var(--parallax-img-y)); */
+      /* filter: url(#lighting); */
+    }
+
+    .spotlight {
+      mix-blend-mode: overlay;
+      z-index: 9999999;
+      clip-path: inset(0 0 0 0);
+      position: absolute;
+      inset: 0;
+      transition-property: transform, opacity;
+      transition-duration: 0.2s;
+      transition-delay: 0.4s;
+      transform: translate3d(0, 0, calc(var(--index) * 80px));
+      mix-blend-mode: unset;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 500%;
+        opacity: 1;
+        aspect-ratio: 1;
+        background: radial-gradient(hsl(0 0% 100% / 0.4) 0 2%, hsl(0 0% 10% / 0.2) 20%);
+        filter: brightness(1.2) contrast(1.2);
+        translate: calc(-50% + (var(--pointer-x) * 20%)) calc(-50% + (var(--pointer-y) * 20%));
+        z-index: 99999;
+      }
+    }
+
+    .pattern {
+      z-index: 11;
+      position: absolute;
+      inset: 0;
+      filter: saturate(0.8) contrast(1) brightness(1);
+      clip-path: inset(0 0 0 0);
+      mask: url(#watermark) center repeat;
+      /* 50% 50% / 20cqi 20cqi no-repeat; */
+      opacity: 0.4;
+      mix-blend-mode: multiply;
+      transition-property: transform, opacity;
+      transition-duration: 0.2s;
+      transition-delay: 0.4s;
+      transform: translate3d(0, 0, calc(var(--index) * 80px));
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: hsl(0 0% 80%);
+      }
+    }
+
+    .refraction {
+      position: absolute;
+      width: 500%;
+      aspect-ratio: 1 / 1;
+      bottom: 0;
+      left: 0;
+      filter: saturate(2);
+      will-change: translate, scale, filter;
+      background: radial-gradient(
+        circle at 0 100%,
+        #0000 10%,
+        hsl(5 100% 80%),
+        hsl(150 100% 60%),
+        hsl(220 90% 70%),
+        #0000 60%
+      );
+      transform-origin: 0 100%;
+      scale: min(1, 0.15 + var(--pointer-x) * 0.25);
+      translate: clamp(-10%, -10% + var(--pointer-x) * 10%, 10%) calc(max(0%, (var(--pointer-y) * -1) * 10%));
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+
+      &:nth-of-type(2) {
+        bottom: unset;
+        top: 0;
+        left: unset;
+        right: 0;
+        scale: min(1, 0.15 + var(--pointer-x) * -0.65);
+        translate: clamp(-10%, 10% - var(--pointer-x) * -10%, 10%) calc(min(0%, var(--pointer-y) * -10%));
+        transform-origin: 100% 0;
+        background: radial-gradient(
+          circle at 100% 0,
+          #0000 10%,
+          hsl(5 100% 80%),
+          hsl(150 100% 60%),
+          hsl(220 90% 70%),
+          #0000 60%
+        );
+      }
+    }
+
+    .backTip {
+      background: url(/pattern/dark-wood.jpg) repeat;
+      position: absolute;
+      inset: 0;
+      z-index: 9;
+    }
+    .tip {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      font-size: 40px;
+      font-family: 'f_zmx';
+      filter: url(#sticker);
+    }
+  }
+}
+
+@layer utilities {
+  .cardBox {
+    transition: rotate 0.24s ease-out;
+    will-change: transform, rotate;
+    rotate: 0deg y;
+    position: relative;
+
+    .cardFront {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      z-index: 3;
+    }
+
+    .cardRear {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+      z-index: 2;
+    }
+
+    &[data-pressed='true'] {
+      rotate: 180deg y;
+    }
+  }
+
+  .srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}

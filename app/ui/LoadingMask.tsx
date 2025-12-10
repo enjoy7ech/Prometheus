@@ -11,6 +11,7 @@ export type LoadingMaskHandle = {
 
 export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
   const mask = useRef<HTMLDivElement>(null);
+  const core = useRef<HTMLImageElement>(null);
   useImperativeHandle(ref, (): LoadingMaskHandle => {
     return {
       show() {
@@ -21,7 +22,7 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
           setTimeout(() => {
             mask.current?.remove();
             resolve();
-          }, 500);
+          }, 1500);
         });
       }
     };
@@ -29,11 +30,15 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
   useEffect(() => {
     const vfx = new VFX();
 
-    if (mask.current) vfx.add(mask.current, { shader: 'glitch', overflow: 1000 });
-  });
+    if (core.current) vfx.add(core.current, { shader: 'glitch', overflow: 1000 });
+    mask.current?.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  }, []);
   return (
     <div className="loading-mask" ref={mask}>
-      <img id="core" src="/core.png" alt="" />
+      <img id="core" ref={core} src="/core.png" alt="" />
     </div>
   );
 }

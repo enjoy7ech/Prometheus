@@ -137,6 +137,7 @@ export default function Home() {
 
   return (
     <>
+      <div className="grain"></div>
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div id="scroll-trigger-container" ref={container} className="flex flex-col">

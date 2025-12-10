@@ -40,6 +40,10 @@
     position: relative;
     white-space: nowrap;
     font-style: oblique;
+    display: flex;
+    align-items: center;
+    align-items: baseline;
+    gap: 10px;
   }
   .title {
     font-size: calc(min(10vw, 124px));
