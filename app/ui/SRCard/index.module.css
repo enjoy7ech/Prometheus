@@ -169,10 +169,12 @@
     }
     .tip {
       position: absolute;
-      bottom: 40px;
-      right: 40px;
-      font-size: 40px;
+      left: 1em;
+      bottom: 1em;
+      right: 1em;
+      font-size: 10cqh;
       font-family: 'f_zmx';
+      text-align: right;
       filter: url(#sticker);
     }
   }

@@ -1,8 +1,15 @@
 export function whenDOMReady() {
   if (document.readyState !== 'loading') {
-    return Promise.resolve();
+    return document.fonts.ready;
   }
   return new Promise((resolve) => {
-    document.addEventListener('DOMContentLoaded', resolve, { once: true });
+    document.addEventListener(
+      'DOMContentLoaded',
+      async () => {
+        await document.fonts.ready;
+        resolve(1);
+      },
+      { once: true }
+    );
   });
 }

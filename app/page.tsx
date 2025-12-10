@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { whenDOMReady } from '@/utils/helper';
 import { useEffect, useRef } from 'react';
-import Footer from './ui/Footer';
 import LoadingMask, { LoadingMaskHandle } from './ui/LoadingMask';
 import PhotoGallery from './ui/PhotoGallery/index';
 
@@ -16,9 +15,6 @@ export default function Home() {
 
   useEffect(() => {
     whenDOMReady()
-      .then(async () => {
-        await document.fonts.ready;
-      })
       .then(() => {
         return new Promise((resolve) => {
           const vd = document.querySelector('#banner-v') as HTMLVideoElement;
@@ -121,13 +117,13 @@ export default function Home() {
 
               tl.seek(vd.currentTime).pause();
             }
-            if (self.progress > 0.1) {
-              if (self.direction > 0) {
-                gsap.to('.header', { yPercent: -100 });
-              } else {
-                gsap.to('.header', { yPercent: 0 });
-              }
-            }
+            // if (self.progress > 0.1) {
+            //   if (self.direction > 0) {
+            //     gsap.to('.header', { yPercent: -100 });
+            //   } else {
+            //     gsap.to('.header', { yPercent: 0 });
+            //   }
+            // }
           }
         });
       });
@@ -137,7 +133,6 @@ export default function Home() {
 
   return (
     <>
-      <div className="grain"></div>
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div id="scroll-trigger-container" ref={container} className="flex flex-col">
@@ -162,10 +157,9 @@ export default function Home() {
               <h1>为什么活着</h1>
             </section>
           </div>
-          <Footer></Footer>
         </div>
         <div className="gallery-container">
-          <PhotoGallery></PhotoGallery>
+          <PhotoGallery album="gallery"></PhotoGallery>
         </div>
       </div>
       <LoadingMask ref={maskRef}></LoadingMask>

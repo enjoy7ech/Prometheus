@@ -3,18 +3,31 @@
   background-size: cover;
   background-position: var(--bgPos, 'center');
   flex: 1;
+  position: relative;
+  container-type: size;
+}
+
+.lost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'f_zmx';
+  .text {
+    font-size: 16cqh;
+  }
 }
 
 .info {
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 40px;
-  bottom: 20px;
-  max-width: 40vw;
+  left: 2cqw;
+  bottom: 4cqh;
+  max-width: 40cqw;
+  --fz: clamp(4cqh, 18px, 10cqh);
 
   .position {
-    font-size: calc(min(3vw, 32px));
+    font-size: var(--fz);
     font-weight: 600;
     color: #fff;
     margin-top: auto;
@@ -34,7 +47,7 @@
   }
 
   .latlng {
-    font-size: calc(min(1vw, 14px));
+    font-size: calc(var(--fz) * 0.6);
     font-weight: 300;
     color: #fff;
     position: relative;
@@ -46,20 +59,20 @@
     gap: 10px;
   }
   .title {
-    font-size: calc(min(10vw, 124px));
+    font-size: calc(var(--fz) * 2.4);
     font-weight: 900;
     color: #fff;
     white-space: nowrap;
   }
   .title2 {
-    font-size: calc(min(5vw, 84px));
+    font-size: calc(var(--fz) * 1.8);
     font-weight: 900;
     color: #fff;
     white-space: nowrap;
   }
   .description {
     line-height: 1.2;
-    font-size: 16px;
+    font-size: calc(var(--fz) * 0.6);
     font-weight: 600;
     color: #fff;
   }
@@ -70,11 +83,13 @@
   /* position: absolute; */
   /* right: 5vw; */
   /* gap: 0 20px; */
+  --fz: 2cqh;
 
   .photo {
     z-index: 1;
-    width: 200px;
-    height: 300px;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    height: 40cqh;
     border-radius: 10px;
     background-image: var(--img);
     background-size: cover;
@@ -83,13 +98,13 @@
     display: flex;
     flex-direction: column;
     padding: 12px;
-    position: fixed;
-    right: calc(240px * (2 - var(--idx)) + 140px);
-    top: calc(50vh - 150px);
+    position: absolute;
+    right: calc((40cqh / 3 * 2 + 4cqh) * (2 - var(--idx)) + 40cqh / 3);
+    top: 30cqh;
     cursor: pointer;
 
     .position {
-      font-size: 16px;
+      font-size: var(--fz);
       font-weight: 600;
       color: #fff;
       margin-top: auto;
@@ -106,15 +121,13 @@
     }
     .title {
       font-weight: 900;
-      font-size: 32px;
+      font-size: calc(var(--fz) * 2);
       color: #fff;
-      padding: 0 6px;
     }
     .title2 {
       font-weight: 900;
-      font-size: 20px;
+      font-size: calc(var(--fz) * 1.4);
       color: #fff;
-      padding: 0 6px;
     }
   }
 }

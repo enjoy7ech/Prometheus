@@ -1,0 +1,23 @@
+.article {
+  width: 100vw;
+  height: 100vh;
+  background: url(/pattern/alchemy.gif);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  .header {
+    flex-shrink: 0;
+    width: 100%;
+    aspect-ratio: 16/5;
+    display: flex;
+    background: #fff;
+  }
+  .content {
+    width: 1200px;
+    background: #fafafa;
+    min-height: 100vh;
+    z-index: 1;
+  }
+}

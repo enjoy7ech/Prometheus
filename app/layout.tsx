@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import Header from './ui/Header';
+import Footer from './ui/Footer';
 
 export const metadata: Metadata = {
   title: 'EASCAPE',
@@ -16,8 +17,10 @@ export default function RootLayout({
     <html lang="zhCN">
       <head></head>
       <body>
+        <div className="grain"></div>
         <Header></Header>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   );
