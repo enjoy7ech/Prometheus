@@ -2,6 +2,9 @@ import { Ref, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import styles from './index.module.css';
 import { gsap } from 'gsap';
 import { flushSync } from 'react-dom';
+import { Draggable } from 'gsap/Draggable';
+
+gsap.registerPlugin(Draggable);
 
 export type SRCardHandle = {
   show: (p: Photo) => void;
@@ -89,6 +92,11 @@ export default function SRCard({ ref }: { ref: Ref<unknown> }) {
             }
           }
         };
+
+        Draggable.create(scaleRef.current, {
+          bounds: maskRef.current,
+          onClick: onSwap
+        });
         open();
       },
       async hide() {
@@ -162,7 +170,7 @@ export default function SRCard({ ref }: { ref: Ref<unknown> }) {
         />
       </svg>
       <div ref={scaleRef}>
-        <div ref={cardRef} className={styles.cardBox} onClick={onSwap}>
+        <div ref={cardRef} className={styles.cardBox}>
           {photo?.url && (
             <>
               <div className={styles.cardFront}>

@@ -29,7 +29,7 @@
   right: 20px;
   cursor: pointer;
   color: #fff;
-  z-index: 11;
+  z-index: 9999999;
 }
 
 @layer base {

@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { flushSync } from 'react-dom';
 import SRCard, { SRCardHandle } from '@/app/ui/SRCard';
+
 // import ExifReader from 'exifreader';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -37,7 +38,7 @@ export default function PhotoGallery() {
     tl.to(
       pEls.current[index],
       {
-        duration: 0.6,
+        duration: 0.8,
         top: '10vh',
         right: 0,
         width: '100vw',
