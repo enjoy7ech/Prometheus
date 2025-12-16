@@ -1,12 +1,5 @@
 import './globals.css';
-import type { Metadata } from 'next';
-import Header from './ui/Header';
-import Footer from './ui/Footer';
-
-export const metadata: Metadata = {
-  title: 'EASCAPE',
-  description: 'EASCAPE，记录旅行的博客。'
-};
+import NormalLayout from '@/app/ui/Layout/NormalLayout';
 
 export default function RootLayout({
   children
@@ -17,10 +10,7 @@ export default function RootLayout({
     <html lang="zhCN">
       <head></head>
       <body>
-        <div className="grain"></div>
-        <Header></Header>
-        {children}
-        <Footer></Footer>
+        <NormalLayout>{children}</NormalLayout>
       </body>
     </html>
   );

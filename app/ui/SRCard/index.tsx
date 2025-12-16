@@ -182,6 +182,7 @@ export default function SRCard({ ref }: { ref: Ref<unknown> }) {
                   <div className={styles.refraction}></div>
                   <div className={styles.refraction}></div>
                 </div>
+
                 <div className={styles.backTip}>
                   <div className={styles.tip} id="tipText">
                     {photo?.tip}

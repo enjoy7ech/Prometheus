@@ -2,14 +2,17 @@
 import './page.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { whenDOMReady } from '@/utils/helper';
 import { useEffect, useRef } from 'react';
 import LoadingMask, { LoadingMaskHandle } from './ui/LoadingMask';
 import PhotoGallery from './ui/PhotoGallery/index';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger);
 
+ScrollTrigger.config({
+  ignoreMobileResize: true, // 第1杀手锏
+  limitCallbacks: true // 防止快速滚动回调爆炸
+});
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
 
@@ -29,13 +32,6 @@ export default function Home() {
         });
       })
       .then(() => {
-        // create the scrollSmoother before your scrollTriggers
-        ScrollSmoother.create({
-          ease: '.power2',
-          smooth: 1.2, // how long (in seconds) it takes to "catch up" to the native scroll position
-          effects: true // looks for data-speed and data-lag attributes on elements
-        });
-
         const vd = document.querySelector('#banner-v') as HTMLVideoElement;
 
         const vdStartEl = document.querySelectorAll('[data-vd-start]');
@@ -95,6 +91,7 @@ export default function Home() {
           '.gallery-container',
           {
             opacity: 1,
+            zIndex: 1,
             ease: 'power2.in',
             duration: 0.5
           },
@@ -133,34 +130,30 @@ export default function Home() {
 
   return (
     <>
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <div id="scroll-trigger-container" ref={container} className="flex flex-col">
-            <video className="bg-video" id="banner-v" src="/banner-v.webm" muted preload="auto"></video>
+      <div className="gallery-container" data-speed="1e-9">
+        <PhotoGallery album="gallery"></PhotoGallery>
+      </div>
+      <div id="scroll-trigger-container" ref={container} className="flex flex-col">
+        <video className="bg-video" id="banner-v" src="/banner-v.webm" muted preload="auto"></video>
 
-            <section className="sec sec-1" data-vd-start="0.3" data-vd-end="2.3">
-              <p>只有失败过的人</p>
-              <p>才懂得我们为什么需要旅行</p>
-            </section>
+        <section className="sec sec-1" data-vd-start="0.3" data-vd-end="2.3">
+          <p>只有失败过的人</p>
+          <p>才懂得我们为什么需要旅行</p>
+        </section>
 
-            <section className="sec sec-2" data-vd-start="2.4" data-vd-end="4.4">
-              <p>旅行是迷失</p>
-              <p>也是为了找到方向</p>
-            </section>
+        <section className="sec sec-2" data-vd-start="2.4" data-vd-end="4.4">
+          <p>旅行是迷失</p>
+          <p>也是为了找到方向</p>
+        </section>
 
-            <section className="sec sec-3" data-vd-start="4.6" data-vd-end="6.3">
-              <p>记住我们为什么出发</p>
-              <p>也是为了记住我们</p>
-            </section>
+        <section className="sec sec-3" data-vd-start="4.6" data-vd-end="6.3">
+          <p>记住我们为什么出发</p>
+          <p>也是为了记住我们</p>
+        </section>
 
-            <section className="sec sec-3" data-vd-start="6.5" data-vd-end="9.7">
-              <h1>为什么活着</h1>
-            </section>
-          </div>
-        </div>
-        <div className="gallery-container">
-          <PhotoGallery album="gallery"></PhotoGallery>
-        </div>
+        <section className="sec sec-3" data-vd-start="6.5" data-vd-end="9.7">
+          <h1>为什么活着</h1>
+        </section>
       </div>
       <LoadingMask ref={maskRef}></LoadingMask>
     </>

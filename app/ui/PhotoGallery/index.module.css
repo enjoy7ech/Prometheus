@@ -24,17 +24,17 @@
   left: 2cqw;
   bottom: 4cqh;
   max-width: 40cqw;
-  --fz: clamp(4cqh, 18px, 10cqh);
+  --fz: calc(min(5cqw, 5cqh));
 
   .position {
-    font-size: var(--fz);
+    font-size: calc(var(--fz) * 0.6);
     font-weight: 600;
     color: #fff;
     margin-top: auto;
     position: relative;
     white-space: nowrap;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     &::before {
       position: absolute;
       top: -16px;
@@ -47,15 +47,11 @@
   }
 
   .latlng {
-    font-size: calc(var(--fz) * 0.6);
-    font-weight: 300;
+    font-size: calc(var(--fz) * 0.35);
+    font-weight: 400;
     color: #fff;
-    position: relative;
-    white-space: nowrap;
-    font-style: oblique;
     display: flex;
     align-items: center;
-    align-items: baseline;
     gap: 10px;
   }
   .title {
@@ -79,17 +75,19 @@
 }
 
 .thumbnail {
-  /* display: flex; */
-  /* position: absolute; */
-  /* right: 5vw; */
-  /* gap: 0 20px; */
-  --fz: 2cqh;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  --fz: calc(min(0.6cqw, 10cqh));
+  --w: calc(min(15cqw, 200px));
 
   .photo {
     z-index: 1;
     aspect-ratio: 2/3;
     overflow: hidden;
-    height: 40cqh;
+    width: var(--w);
+    /* height: 40cqh; */
     border-radius: 10px;
     background-image: var(--img);
     background-size: cover;
@@ -99,8 +97,7 @@
     flex-direction: column;
     padding: 12px;
     position: absolute;
-    right: calc((40cqh / 3 * 2 + 4cqh) * (2 - var(--idx)) + 40cqh / 3);
-    top: 30cqh;
+    right: calc(var(--w) * 1.1 * (2 - var(--idx)) + var(--w) / 2);
     cursor: pointer;
 
     .position {
@@ -109,6 +106,7 @@
       color: #fff;
       margin-top: auto;
       position: relative;
+      z-index: 9999;
       &::before {
         position: absolute;
         top: -8px;

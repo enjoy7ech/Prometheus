@@ -9,11 +9,12 @@
     left: 0;
     height: 80vh;
     width: 100vw;
-    z-index: -1;
+    z-index: 1;
     opacity: 0;
   }
 
   .sec {
+    z-index: 2;
     font-family: f_qkh;
     font-size: calc(min(50px, 3vw));
     color: #fff;
