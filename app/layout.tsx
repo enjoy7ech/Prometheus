@@ -1,4 +1,5 @@
 import './globals.css';
+import './grain.css';
 import NormalLayout from '@/app/ui/Layout/NormalLayout';
 
 export default function RootLayout({
