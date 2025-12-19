@@ -13,6 +13,8 @@ export default function Header() {
   const [isAway, setIsAway] = useState(false);
   const [isFlying, setFlying] = useState(false);
 
+  const [photos, setPhotos] = useState<{ url: string; href: string }[]>([]);
+
   const onWhereToGo = () => {
     if (isFlying) return;
     setFlying(true);
@@ -56,6 +58,22 @@ export default function Header() {
       });
     } else {
       setIsAway(true);
+
+      fetch(`https://trick.dongzx.lol/config/whereToGo.txt`, { cache: 'no-cache' }).then(async (res) => {
+        const text = await res.text();
+        const arr = text.split('\n');
+
+        const ps = [];
+        const infoSize = 8;
+        for (let i = 0; i < arr.length; i += infoSize) {
+          const [url, href] = arr.slice(i, i + infoSize);
+          ps.push({
+            url,
+            href
+          });
+        }
+        setPhotos(ps);
+      });
 
       tl.to(planeRef.current, { color: '#fff', duration: 0 }).to(
         planeRef.current,
@@ -153,7 +171,19 @@ export default function Header() {
         </div>
       </header>
       <div className="where-to-go-dialog" ref={goDialogRef}>
-        <div className="sub-title">WHERE TO GO</div>
+        <div className="photo-list">
+          {photos.map((photo, index) => (
+            <div key={index} className="photo-item">
+              <img
+                src={photo.url}
+                alt="photo"
+                onClick={() => {
+                  window.open(photo.href, '_blank');
+                }}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

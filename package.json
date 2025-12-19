@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@vfx-js/core": "^0.8.0",
     "exifreader": "^4.33.1",
     "gsap": "^3.13.0",
     "lodash-es": "^4.17.21",

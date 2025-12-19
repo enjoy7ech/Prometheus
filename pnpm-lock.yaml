@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@vfx-js/core':
-        specifier: ^0.8.0
-        version: 0.8.0
       exifreader:
         specifier: ^4.33.1
         version: 4.33.1
@@ -731,9 +728,6 @@ packages:
     resolution: {integrity: sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g==}
     cpu: [x64]
     os: [win32]
-
-  '@vfx-js/core@0.8.0':
-    resolution: {integrity: sha512-+1Q8rEtj+2fczdb9b3YMiMtpBXrQbSbIXFRc9I10d2wgQ52Qtxt9jjMwtXGfWK3kHfDCpnxhNtd71x+r7Z34LQ==}
 
   '@xmldom/xmldom@0.9.8':
     resolution: {integrity: sha512-p96FSY54r+WJ50FIOsCOjyj/wavs8921hG5+kVMmZgKcvIKxMXHTrjNJvRgWa/zuX3B6t2lijLNFaOyuxUH+2A==}
@@ -1876,9 +1870,6 @@ packages:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
     engines: {node: '>=6'}
 
-  three@0.177.0:
-    resolution: {integrity: sha512-EiXv5/qWAaGI+Vz2A+JfavwYCMdGjxVsrn3oBwllUoqYeaBO75J63ZfyaQKoiLrqNHoTlUc6PFgMXnS0kI45zg==}
-
   tinyglobby@0.2.15:
     resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
     engines: {node: '>=12.0.0'}
@@ -2589,10 +2580,6 @@ snapshots:
 
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
-
-  '@vfx-js/core@0.8.0':
-    dependencies:
-      three: 0.177.0
 
   '@xmldom/xmldom@0.9.8':
     optional: true
@@ -3946,8 +3933,6 @@ snapshots:
   tailwindcss@4.1.17: {}
 
   tapable@2.3.0: {}
-
-  three@0.177.0: {}
 
   tinyglobby@0.2.15:
     dependencies:
