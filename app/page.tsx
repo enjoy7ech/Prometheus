@@ -130,9 +130,6 @@ export default function Home() {
 
   return (
     <>
-      <div className="gallery-container" data-speed="1e-9">
-        <PhotoGallery album="gallery"></PhotoGallery>
-      </div>
       <div id="scroll-trigger-container" ref={container} className="flex flex-col">
         <video className="bg-video" id="banner-v" src="/banner-v.webm" muted preload="auto"></video>
 

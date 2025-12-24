@@ -7,7 +7,7 @@ import SRCard, { SRCardHandle } from '@/app/ui/SRCard';
 
 // import ExifReader from 'exifreader';
 
-export default function PhotoGallery({ album }: { album: string }) {
+export default function PhotoGallery({ album, onReady }: { album: string; onReady?: () => void }) {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [active, setActive] = useState<number>(0);
   // 创建 ref 来保存最新状态
@@ -97,13 +97,15 @@ export default function PhotoGallery({ album }: { album: string }) {
           });
         }
         setPhotos(ps);
+
+        onReady?.();
       });
   }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
       switchPhoto((activeRef.current + 1) % photos.length);
-    }, 5000);
+    }, 8000);
 
     return () => {
       clearInterval(timer);

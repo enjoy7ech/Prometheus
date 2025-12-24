@@ -3,6 +3,10 @@
 @font-face {
   font-family: 'f_hyk';
   src: url(/font/Hangyaku.ttf) format('truetype');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD; /* 基本拉丁字符范围 */
+  font-display: swap;
 }
 
 @font-face {
@@ -21,6 +25,7 @@
 }
 
 :root {
+  --g: 1.618;
   --bg-color: #0e100f;
 }
 
@@ -90,6 +95,52 @@ body {
       transform: translate3d(-7rem, 0, 0);
     }
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: f_hyk, f_sc;
+  }
+
+  h1 {
+    font-size: calc(var(--g) * 6cqw);
+    font-weight: 999;
+  }
+
+  h2 {
+    font-size: calc(var(--g) * 6cqw);
+    font-weight: 800;
+  }
+
+  h3 {
+    font-size: calc(var(--g) * 3cqw);
+    font-weight: 700;
+  }
+
+  article {
+    container-type: size;
+    .emp::first-letter {
+      initial-letter: 2.5;
+    }
+    p {
+      font-feature-settings:
+        'halt' 1,
+        'kern' 1;
+      font-size: calc(var(--g) * 1.618cqw);
+      line-height: var(--g);
+      margin: 1em 0;
+    }
+
+    img {
+      float: right;
+      width: 50cqw;
+      object-fit: cover;
+      margin-left: 0.25em;
+    }
+  }
 }
 
 .header {
@@ -99,9 +150,16 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 10vh;
-  padding: 0 2em;
+  height: calc(clamp(6.2vw, 6.2vw, 10vh));
+  padding: 0 2vw;
   z-index: 9998;
+  transition: all 0.2s ease-in-out;
+  will-change: backdrop-filter;
+  mix-blend-mode: exclusion;
+  &:hover {
+    /* backdrop-filter: blur(4px); */
+    /* background-color: #0e100f; */
+  }
   .header-content {
     height: 100%;
     container-type: size;
@@ -151,6 +209,7 @@ body {
   flex-direction: column;
   justify-content: center;
   background: transparent;
+  overflow: hidden;
 
   &::after {
     content: 'WHERE TO GO';
@@ -172,13 +231,50 @@ body {
 
   .photo-list {
     height: 60vh;
-
-    padding: 0 2vw;
+    display: flex;
+    overflow: hidden;
 
     .photo-item {
-      height: 80%;
+      height: 100%;
+      aspect-ratio: 1/1.62;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      > * {
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.13);
+          filter: grayscale(0) blur(0px);
+        }
+        .photo-title {
+          color: black;
+        }
+      }
       img {
+        will-change: filter;
         height: 100%;
+        width: 100%;
+        object-fit: cover;
+        filter: grayscale(1) blur(8px);
+      }
+
+      .photo-title {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 9vh;
+        font-family: 'f_zmx';
+        writing-mode: vertical-lr;
+        mix-blend-mode: screen;
       }
     }
   }
@@ -205,5 +301,14 @@ body {
   canvas {
     aspect-ratio: 4;
     width: 50vw;
+  }
+}
+
+.shy-block {
+  mix-blend-mode: difference;
+  background: #fff !important;
+  color: #fff !important;
+  &:hover {
+    color: #000 !important;
   }
 }

@@ -15,9 +15,11 @@
     background: #fff;
   }
   .content {
-    width: 80vw;
+    width: calc(min(70vw, 1366px));
     background: #fafafa;
     min-height: 100vh;
     z-index: 1;
+    container-type: contain;
+    padding: 2cqi;
   }
 }

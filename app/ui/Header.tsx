@@ -3,17 +3,20 @@
 import { useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import smoke from '@/utils/UI/smoke';
-// import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { Draggable } from 'gsap/Draggable';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(Draggable, ScrollTrigger, ScrollSmoother);
 
 export default function Header() {
   const planeRef = useRef<SVGSVGElement>(null);
   const goDialogRef = useRef<HTMLDivElement>(null);
+  const plRef = useRef<HTMLDivElement>(null);
   const [isAway, setIsAway] = useState(false);
   const [isFlying, setFlying] = useState(false);
 
-  const [photos, setPhotos] = useState<{ url: string; href: string }[]>([]);
+  const [photos, setPhotos] = useState<{ url: string; place: string; href: string }[]>([]);
 
   const onWhereToGo = () => {
     if (isFlying) return;
@@ -63,16 +66,22 @@ export default function Header() {
         const text = await res.text();
         const arr = text.split('\n');
 
-        const ps = [];
-        const infoSize = 8;
+        const ps: { url: string; place: string; href: string }[] = [];
+        const infoSize = 3;
         for (let i = 0; i < arr.length; i += infoSize) {
-          const [url, href] = arr.slice(i, i + infoSize);
+          const [url, place, href] = arr.slice(i, i + infoSize);
           ps.push({
             url,
+            place,
             href
           });
         }
+
         setPhotos(ps);
+
+        plRef.current?.addEventListener('wheel', (e) => {
+          gsap.to(plRef.current, { scrollLeft: plRef.current!.scrollLeft + e.deltaY });
+        });
       });
 
       tl.to(planeRef.current, { color: '#fff', duration: 0 }).to(
@@ -171,16 +180,17 @@ export default function Header() {
         </div>
       </header>
       <div className="where-to-go-dialog" ref={goDialogRef}>
-        <div className="photo-list">
+        <div className="photo-list" ref={plRef}>
           {photos.map((photo, index) => (
-            <div key={index} className="photo-item">
-              <img
-                src={photo.url}
-                alt="photo"
-                onClick={() => {
-                  window.open(photo.href, '_blank');
-                }}
-              />
+            <div
+              key={index}
+              className="photo-item"
+              onClick={() => {
+                window.open(photo.href, '_blank');
+              }}
+            >
+              <img src={photo.url} alt="photo" />
+              <div className="photo-title">{photo.place}</div>
             </div>
           ))}
         </div>

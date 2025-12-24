@@ -126,6 +126,8 @@ export default function SRCard({ ref }: { ref: Ref<unknown> }) {
 
     maskRef.current?.addEventListener('wheel', onWheel);
 
+    document.body.appendChild(maskRef.current!);
+
     const onPointerMove = ({ x, y }: { x: number; y: number }) => {
       const BOUNDS = imgRef.current?.getBoundingClientRect();
       if (BOUNDS) {
