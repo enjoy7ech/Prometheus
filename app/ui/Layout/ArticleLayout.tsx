@@ -1,6 +1,6 @@
 'use client';
 import Header from '@/app/ui/Header';
-import Footer from '@/app/ui/Footer/Footer';
+import ArtFooter from '@/app/ui/Footer/ArtFooter';
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -31,10 +31,7 @@ export default function NormalLayout({
     <>
       <Header></Header>
       <div className="grain"></div>
-      <div id="smooth-wrapper">
-        <div id="smooth-content">{children}</div>
-      </div>
-      <Footer></Footer>
+      {children}
     </>
   );
 }

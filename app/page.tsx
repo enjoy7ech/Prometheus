@@ -6,6 +6,7 @@ import { whenDOMReady } from '@/utils/helper';
 import { useEffect, useRef } from 'react';
 import LoadingMask, { LoadingMaskHandle } from './ui/LoadingMask';
 import PhotoGallery from './ui/PhotoGallery/index';
+import NormalLayout from '@/app/ui/Layout/NormalLayout';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,7 +130,7 @@ export default function Home() {
   const maskRef = useRef<LoadingMaskHandle>(null);
 
   return (
-    <>
+    <NormalLayout duration={1.2}>
       <div id="scroll-trigger-container" ref={container} className="flex flex-col">
         <video className="bg-video" id="banner-v" src="/banner-v.webm" muted preload="auto"></video>
 
@@ -149,10 +150,10 @@ export default function Home() {
         </section>
 
         <section className="sec sec-3" data-vd-start="6.5" data-vd-end="9.7">
-          <h1>为什么活着</h1>
+          <p>为什么活着</p>
         </section>
       </div>
       <LoadingMask ref={maskRef}></LoadingMask>
-    </>
+    </NormalLayout>
   );
 }

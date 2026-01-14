@@ -108,20 +108,42 @@ body {
   h1 {
     font-size: calc(var(--g) * 6cqw);
     font-weight: 999;
+    padding: 0.25em 0;
   }
 
   h2 {
     font-size: calc(var(--g) * 6cqw);
     font-weight: 800;
+    padding: 0.25em 0;
   }
 
   h3 {
     font-size: calc(var(--g) * 3cqw);
     font-weight: 700;
+    padding: 0.25em 0;
   }
 
   article {
     container-type: size;
+
+    .anchor {
+      display: flex;
+      align-items: center;
+      gap: 0.25em;
+      cursor: pointer;
+      &:hover {
+        &::before {
+          transform: rotate(30deg);
+        }
+      }
+      &::before {
+        content: '⚓';
+        font-size: 0.5em;
+        transition: all 0.2s ease-in-out;
+        will-change: transform;
+      }
+    }
+
     .emp::first-letter {
       initial-letter: 2.5;
     }
@@ -131,14 +153,31 @@ body {
         'kern' 1;
       font-size: calc(var(--g) * 1.618cqw);
       line-height: var(--g);
-      margin: 1em 0;
+      margin: 0.25em 0;
     }
 
     img {
-      float: right;
       width: 50cqw;
       object-fit: cover;
-      margin-left: 0.25em;
+
+      &.left {
+        float: left;
+        margin-right: 1em;
+      }
+
+      &.right {
+        float: right;
+        margin-left: 1em;
+      }
+    }
+
+    section {
+      clear: both;
+      &::after {
+        content: '';
+        clear: both;
+        display: block;
+      }
     }
   }
 }
@@ -281,9 +320,10 @@ body {
 }
 
 .footer {
+  color: #fff;
   position: fixed;
   bottom: 0;
-  height: 10vh;
+  height: 8vh;
   left: 2em;
   right: 2em;
   z-index: 9998;

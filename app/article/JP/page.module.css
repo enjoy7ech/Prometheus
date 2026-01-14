@@ -1,6 +1,5 @@
 .article {
   width: 100vw;
-  height: 100vh;
   background: url(/pattern/alchemy.gif);
   display: flex;
   flex-direction: column;
@@ -19,7 +18,7 @@
     background: #fafafa;
     min-height: 100vh;
     z-index: 1;
-    container-type: contain;
-    padding: 2cqi;
+    container-type: inline-size;
+    padding: 2cqw;
   }
 }

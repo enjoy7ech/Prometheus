@@ -1,6 +1,5 @@
 import '@/styles/globals.css';
 import '@/styles/grain.css';
-import NormalLayout from '@/app/ui/Layout/NormalLayout';
 
 export default function RootLayout({
   children
@@ -10,9 +9,7 @@ export default function RootLayout({
   return (
     <html lang="zhCN">
       <head></head>
-      <body>
-        <NormalLayout>{children}</NormalLayout>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

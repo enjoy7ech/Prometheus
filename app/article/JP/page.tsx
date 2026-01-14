@@ -5,12 +5,12 @@ import { whenDOMReady } from '@/utils/helper';
 import styles from './page.module.css';
 import PhotoGallery from '@/app/ui/PhotoGallery';
 import { MPromise } from '@/utils/Lib/cls';
-import SRCard, { SRCardHandle } from '@/app/ui/SRCard';
+import SRImage from '@/app/ui/Common/SRImage';
+import ArticleLayout from '@/app/ui/Layout/ArticleLayout';
 
 export default function JP() {
   const maskRef = useRef<LoadingMaskHandle>(null);
   const galleryPromise = new MPromise<void>();
-  const SRCRef = useRef<SRCardHandle>(null);
 
   useEffect(() => {
     whenDOMReady().then(() => {
@@ -21,26 +21,24 @@ export default function JP() {
   });
 
   return (
-    <div className={styles.article}>
-      <SRCard ref={SRCRef}></SRCard>
-      <div className={styles.header}>
-        {<PhotoGallery album="jp" onReady={() => galleryPromise.resolve()}></PhotoGallery>}
-      </div>
-      <article className={styles.content}>
-        <h2>
-          <a href="#Day1" className="headerlink" title="Day1"></a>Day1
-        </h2>
-        <h3>
-          <a href="#南京禄口机场" className="headerlink" title="南京禄口机场"></a>
-          南京禄口机场
-        </h3>
+    <ArticleLayout>
+      <div className={styles.article}>
+        <div className={styles.header}>
+          {<PhotoGallery album="jp" onReady={() => galleryPromise.resolve()}></PhotoGallery>}
+        </div>
+        <article className={styles.content}>
+          <h2 className="anchor" id="Day1">
+            Day1
+          </h2>
+          <h3 className="anchor" id="南京禄口机场">
+            南京禄口机场
+          </h3>
 
-        <section className="emp">
-          <p>
-            <img
-              src="https://pan.dongzx.lol/api/v4/file/content/7xAs1/0/IMG_2980.JPG?sign=BQiYb3K36N89d2ma3gQTeeSBm-kugx5RHq4VPMqdp44%3D%3A0"
-              onClick={() =>
-                SRCRef.current?.show({
+          <section className="emp">
+            <p>
+              <SRImage
+                className="right"
+                photo={{
                   id: 1,
                   url: 'https://pan.dongzx.lol/api/v4/file/content/7xAs1/0/IMG_2980.JPG?sign=BQiYb3K36N89d2ma3gQTeeSBm-kugx5RHq4VPMqdp44%3D%3A0',
                   bgPos: 'center',
@@ -50,43 +48,109 @@ export default function JP() {
                   latlng: '',
                   description: '',
                   tip: ''
-                })
-              }
-              alt=""
-            ></img>
-            计划了半年的出行计划终于如约而至了，一切都已经准备就绪。一下班便急冲冲的冲向地铁，园区站出发，目标：东京。这是个漫长的旅途，哥几个先到桌游店玩一晚上，凌晨去赶飞机。
-            <span className="shy-block">此处过程不想回忆，因为我第一次打线下德扑，一晚上输了一千块。</span>
-          </p>
-          <p>凌晨时分，随着日出，我们拿着登机牌，值完机，迎着朝阳踏进飞往11区的登机走廊。</p>
-        </section>
+                }}
+              ></SRImage>
+              计划了半年的出行计划终于如约而至了，一切都已经准备就绪。一下班便急冲冲的冲向地铁，园区站出发，目标：东京。这是个漫长的旅途，哥几个先到桌游店玩一晚上，凌晨去赶飞机。
+              <span className="shy-block">此处过程不想回忆，因为我第一次打线下德扑，一晚上输了一千块。</span>
+            </p>
+            <p>凌晨时分，随着日出，我们拿着登机牌，值完机，迎着朝阳踏进飞往11区的登机走廊。</p>
+          </section>
 
-        <h3>
-          <a href="#在天上" className="headerlink" title="在天上"></a>
-          在天上
-        </h3>
-        <section>
-          <p>飞机上，我们讨论着三天的行程，没一会便困意涌现。</p>
-          <p>
-            通宵带来的困意就丢在这平流层，一切都在我们的计划之中。但是旁边三个女的实在是聒噪，硬是在那叫了三个小时，一会哈哈大笑，一会惊叫吵闹，一会又开始往脸上咔咔拍粉。硬控我三个小时，所以说计划赶不上变化呢。
-          </p>
-        </section>
-        {/* 
+          <h3 className="anchor" id="在天上">
+            在天上
+          </h3>
+          <section>
+            <p>飞机上，我们讨论着三天的行程，没一会便困意涌现。</p>
+            <p>
+              通宵带来的困意就丢在这平流层，一切都在我们的计划之中。但是旁边三个女的实在是聒噪，硬是在那叫了三个小时，一会哈哈大笑，一会惊叫吵闹，一会又开始往脸上咔咔拍粉。硬控我三个小时，所以说计划赶不上变化呢。
+            </p>
+          </section>
 
-<h3 id="成田机场"><a href="#成田机场" className="headerlink" title="成田机场" ></a>成田机场</h3><p>入关成功，此时已经来到了下午3点。换完手机卡，开始去往酒店。</p>
-<a href="https://pan.dongzx.lol/api/v4/file/content/B3eF2/0/IMG_2982.JPG?sign=GI1HveYN2tRN3vqp7ttB_WseXqoHuDQDfIloukt13RU%3D%3A0" data-fancybox="gallery" data-caption="" data-thumb="https://pan.dongzx.lol/api/v4/file/content/B3eF2/0/IMG_2982.JPG?sign=GI1HveYN2tRN3vqp7ttB_WseXqoHuDQDfIloukt13RU%3D%3A0"><img src="https://pan.dongzx.lol/api/v4/file/content/B3eF2/0/IMG_2982.JPG?sign=GI1HveYN2tRN3vqp7ttB_WseXqoHuDQDfIloukt13RU%3D%3A0"></a>
+          <h3 className="anchor" id="成田机场">
+            成田机场
+          </h3>
+          <section>
+            <SRImage
+              className="left"
+              photo={{
+                id: 1,
+                url: 'https://pan.dongzx.lol/api/v4/file/content/B3eF2/0/IMG_2982.JPG?sign=GI1HveYN2tRN3vqp7ttB_WseXqoHuDQDfIloukt13RU%3D%3A0',
+                bgPos: 'center',
+                position: '',
+                title: '成田机场',
+                title2: '',
+                latlng: '',
+                description: '',
+                tip: 'Welcome to Japan'
+              }}
+            ></SRImage>
+            <p>入关成功，此时已经来到了下午3点。换完手机卡，开始去往酒店。</p>
+            <p>酒店在新宿，我们买了机场大巴的票，又坐了个把小时终于来到东京。</p>
+          </section>
 
-<p>酒店在新宿，我们买了机场大巴的票，又坐了个把小时终于来到东京。</p>
-<h3 id="秋叶原"><a href="#秋叶原" className="headerlink" title="秋叶原" ></a>秋叶原</h3><p>此次出行，我们主要是来看Roselia的live的。提到看live，必须得要应援棒。然而萝的热度太高，导致应援棒的购买难度很大，我们便直直去了秋叶原开始淘宝。</p>
-<p>来到秋叶原，动漫、游戏中的场景便一一映射出脑海。</p>
-<p><a href="https://pan.dongzx.lol/api/v4/file/content/ox6hK/0/IMG_2987.JPG?sign=PptlT9VL6nYXNG9YpV_K005-pR-etPr_CWWo5RlstOk=:0" data-fancybox="gallery" data-caption="秋葉原駅" data-thumb="https://pan.dongzx.lol/api/v4/file/content/ox6hK/0/IMG_2987.JPG?sign=PptlT9VL6nYXNG9YpV_K005-pR-etPr_CWWo5RlstOk=:0"><img src="https://pan.dongzx.lol/api/v4/file/content/ox6hK/0/IMG_2987.JPG?sign=PptlT9VL6nYXNG9YpV_K005-pR-etPr_CWWo5RlstOk=:0" alt="秋葉原駅"></a><div className="img-alt is-center">秋葉原駅</div></p>
-<p><a href="https://pan.dongzx.lol/api/v4/file/content/loKug/0/IMG_2990.JPG?sign=KYL9hXMqWNlLcDceuawlfQYgvK_vncdH0j1v2NXScow=:0" data-fancybox="gallery" data-caption="街景" data-thumb="https://pan.dongzx.lol/api/v4/file/content/loKug/0/IMG_2990.JPG?sign=KYL9hXMqWNlLcDceuawlfQYgvK_vncdH0j1v2NXScow=:0"><img src="https://pan.dongzx.lol/api/v4/file/content/loKug/0/IMG_2990.JPG?sign=KYL9hXMqWNlLcDceuawlfQYgvK_vncdH0j1v2NXScow=:0" alt="街景"></a><div className="img-alt is-center">街景</div></p>
-<p>逛着各种各样的周边店，商品，琳琅满目。</p>
-<p><a href="https://pan.dongzx.lol/api/v4/file/content/333SA/0/IMG_2988.JPG?sign=nbpg5ek849FfwULJjYo-RW0VYn8ie9hnjFBbw1GIQgI=:0" data-fancybox="gallery" data-caption="woc,是原批" data-thumb="https://pan.dongzx.lol/api/v4/file/content/333SA/0/IMG_2988.JPG?sign=nbpg5ek849FfwULJjYo-RW0VYn8ie9hnjFBbw1GIQgI=:0"><img src="https://pan.dongzx.lol/api/v4/file/content/333SA/0/IMG_2988.JPG?sign=nbpg5ek849FfwULJjYo-RW0VYn8ie9hnjFBbw1GIQgI=:0" alt="woc,是原批"></a><div className="img-alt is-center">woc,是原批</div></p>
-<p>然而找遍各个周边店也没发现rosenchor的应援棒。白忙活半天，只能先去酒店办理入住了。</p>
+          <h3 className="anchor" id="秋叶原">
+            秋叶原
+          </h3>
+
+          <section>
+            <p>此次出行，我们主要是来看Roselia的live的。提到看live，必须得要应援棒。</p>
+            <p>然而Roselia的热度太高，导致应援棒的购买难度很大，我们便直直去了秋叶原开始淘宝。</p>
+            <div className="flex gap-2">
+              <SRImage
+                className="flex-1 w-1/3"
+                photo={{
+                  id: 1,
+                  url: 'https://pan.dongzx.lol/api/v4/file/content/ox6hK/0/IMG_2987.JPG?sign=PptlT9VL6nYXNG9YpV_K005-pR-etPr_CWWo5RlstOk=:0',
+                  bgPos: 'center',
+                  position: '',
+                  title: '秋葉原駅',
+                  title2: '',
+                  latlng: '',
+                  description: '',
+                  tip: '秋葉原駅'
+                }}
+              ></SRImage>
+              <SRImage
+                className="w-1/3"
+                photo={{
+                  id: 1,
+                  url: 'https://pan.dongzx.lol/api/v4/file/content/loKug/0/IMG_2990.JPG?sign=KYL9hXMqWNlLcDceuawlfQYgvK_vncdH0j1v2NXScow=:0',
+                  bgPos: 'center',
+                  position: '',
+                  title: '街景',
+                  title2: '',
+                  latlng: '',
+                  description: '',
+                  tip: '街景'
+                }}
+              ></SRImage>
+            </div>
+            <p>逛着各种各样的周边店，商品，琳琅满目。</p>
+
+            <SRImage
+              className="w-full"
+              photo={{
+                id: 1,
+                url: 'https://pan.dongzx.lol/api/v4/file/content/333SA/0/IMG_2988.JPG?sign=nbpg5ek849FfwULJjYo-RW0VYn8ie9hnjFBbw1GIQgI=:0',
+                bgPos: 'center',
+                position: '',
+                title: '',
+                title2: '',
+                latlng: '',
+                description: '',
+                tip: 'woc,是原批'
+              }}
+            ></SRImage>
+            <p>然而找遍各个周边店也没发现rosenchor的应援棒。白忙活半天，只能先去酒店办理入住了。</p>
+          </section>
+          {/* 
+
+
+
 <h3 id="新宿"><a href="#新宿" className="headerlink" title="新宿" ></a>新宿</h3><p>不算豪华的ホテル，一晚600RMB的价格，不愧是发达国家。泡了个澡，我们便出发去觅食。走一会便到了歌舞伎町。</p>
 <a href="https://pan.dongzx.lol/api/v4/file/content/xwlhq/0/IMG_2994.JPG?sign=Ey0bS2bv3btPgK5O-cbqLTltvmh7Q-f6t3jv_tchKn8%3D%3A0" data-fancybox="gallery" data-caption="" data-thumb="https://pan.dongzx.lol/api/v4/file/content/xwlhq/0/IMG_2994.JPG?sign=Ey0bS2bv3btPgK5O-cbqLTltvmh7Q-f6t3jv_tchKn8%3D%3A0"><img src="https://pan.dongzx.lol/api/v4/file/content/xwlhq/0/IMG_2994.JPG?sign=Ey0bS2bv3btPgK5O-cbqLTltvmh7Q-f6t3jv_tchKn8%3D%3A0"></a> */}
 
-        {/* <p>街上很多皮条客，一路上被问个不停，不愧是亚洲第一红灯区。话说怎么看出来我是中国人的，上来就跟我说中文。找了半天觅食的地方，最后挑了坨大的：天龍自助烤肉。（已入黑名单）</p>
+          {/* <p>街上很多皮条客，一路上被问个不停，不愧是亚洲第一红灯区。话说怎么看出来我是中国人的，上来就跟我说中文。找了半天觅食的地方，最后挑了坨大的：天龍自助烤肉。（已入黑名单）</p>
 <h2 id="Day2"><a href="#Day2" className="headerlink" title="Day2" ></a>Day2</h2><p>昨天没买到棒子，今天上午一行人准备出发去往池袋的Bushiroad的周边店。下午5点才开始live，还有时间。</p>
 <p>乘着哥几个还在睡觉的，我便一个出去走走，找了个最近的公园。公园附近是一所幼儿园，但是已经没什么人，破败的学校门牌，日本的低生育率可见一斑。希望我们国家不会有这般未来。</p>
 <p><video controls="" playsinline="" src="https://pan.dongzx.lol/api/v4/file/content/Ml0sG/0/IMG_3001.MOV?sign=vH8HH48iXN6oWvrF1jjr2U8g7xSdi-GtP9NUjBhudpQ%3D%3A0"></video></p>
@@ -210,8 +274,9 @@ export default function JP() {
 <h2 id="Day4"><a href="#Day4" className="headerlink" title="Day4" ></a>Day4</h2><h3 id="返程"><a href="#返程" className="headerlink" title="返程" ></a>返程</h3><p>由于东京离成田机场实在比较远，我们一早便启程去往机场。<br>一路上听着live演唱过的歌曲，回想着这两天的见闻。<br>世界是真的广阔啊，这里的确是完全不一样的世界，之前可能在各种图片视频里看过听过，但是都不如真真正正的经历一分钟。不能再做电脑前那个自以为无所不可知的自己了，切身的见闻才算真正的有所知。</p>
 <p><a href="https://pan.dongzx.lol/api/v4/file/content/kK2iJ/0/IMG_3058.JPG?sign=RYS0rJ7dpigvAnSZIVfNEwFhkVlX27qRTx33y3yfPfg=:0" data-fancybox="gallery" data-caption="返程" data-thumb="https://pan.dongzx.lol/api/v4/file/content/kK2iJ/0/IMG_3058.JPG?sign=RYS0rJ7dpigvAnSZIVfNEwFhkVlX27qRTx33y3yfPfg=:0"><img src="https://pan.dongzx.lol/api/v4/file/content/kK2iJ/0/IMG_3058.JPG?sign=RYS0rJ7dpigvAnSZIVfNEwFhkVlX27qRTx33y3yfPfg=:0" alt="返程"></a><div className="img-alt is-center">返程</div></p>
 <p>有了新的勇气，相信下次相见不会太久！</p> */}
-      </article>
-      <LoadingMask ref={maskRef}></LoadingMask>
-    </div>
+        </article>
+        <LoadingMask ref={maskRef}></LoadingMask>
+      </div>
+    </ArticleLayout>
   );
 }
