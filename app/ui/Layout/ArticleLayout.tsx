@@ -31,7 +31,9 @@ export default function NormalLayout({
     <>
       <Header></Header>
       <div className="grain"></div>
-      {children}
+      <div id="smooth-wrapper">
+        <div id="smooth-content">{children}</div>
+      </div>
     </>
   );
 }

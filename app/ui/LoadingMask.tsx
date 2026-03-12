@@ -57,7 +57,7 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
         else if (type == '-') return -Math.floor(Math.random() * N);
         else return Math.floor(Math.random() * N);
       }
-      const ctx = canvasRef.current.getContext('2d');
+      const ctx = canvasRef.current.getContext('2d', { willReadFrequently: true });
       canvasRef.current.width = W;
       canvasRef.current.height = H;
 

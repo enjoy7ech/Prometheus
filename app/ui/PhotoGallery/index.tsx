@@ -27,6 +27,7 @@ export default function PhotoGallery({ album, onReady }: { album: string; onRead
   };
 
   const switchPhoto = (index: number) => {
+    if (!pEls.current[index]) return;
     const tl = gsap.timeline();
     tl.to(
       pEls.current[index],
@@ -65,9 +66,11 @@ export default function PhotoGallery({ album, onReady }: { album: string; onRead
         tl.revert();
         tl.clear();
         tl.kill();
-        gsap.set(pEls.current[index], { clearProps: 'width,height,top,right,boxShadow,backgroundPosition' });
+        if (pEls.current[index]) {
+          gsap.set(pEls.current[index], { clearProps: 'width,height,top,right,boxShadow,backgroundPosition' });
+          pEls.current[index].style.zIndex = '1';
+        }
         gsap.set(others, { clearProps: 'transform' });
-        pEls.current[index].style.zIndex = '1';
       });
     });
   };
