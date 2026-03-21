@@ -7,15 +7,21 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { whenDOMReady } from '@/utils/helper';
 
+import { useNav } from '@/context/NavContext';
+
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function NormalLayout({
   children,
-  duration
+  duration,
+  fixedContent
 }: Readonly<{
   children: React.ReactNode;
   duration?: number;
+  fixedContent?: React.ReactNode;
 }>) {
+  const { activeArticle } = useNav();
+
   useEffect(() => {
     // create the scrollSmoother before your scrollTriggers
     whenDOMReady().then(() => {
@@ -30,11 +36,11 @@ export default function NormalLayout({
   return (
     <>
       <Header></Header>
-      <div className="grain"></div>
+      {fixedContent}
       <div id="smooth-wrapper">
         <div id="smooth-content">{children}</div>
       </div>
-      <Footer></Footer>
+      {!activeArticle && <Footer></Footer>}
     </>
   );
 }

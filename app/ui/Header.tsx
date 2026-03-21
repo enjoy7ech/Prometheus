@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { useNav } from '@/context/NavContext';
 import { gsap } from 'gsap';
 import smoke from '@/utils/UI/smoke';
 import { Draggable } from 'gsap/Draggable';
@@ -10,6 +11,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(Draggable, ScrollTrigger, ScrollSmoother);
 
 export default function Header() {
+  const { setActiveArticle } = useNav();
   const planeRef = useRef<SVGSVGElement>(null);
   const goDialogRef = useRef<HTMLDivElement>(null);
   const plRef = useRef<HTMLDivElement>(null);
@@ -24,10 +26,10 @@ export default function Header() {
     const tl = gsap.timeline();
     if (!goDialogRef.current?.querySelector('canvas')) {
       smoke(goDialogRef.current!);
-      goDialogRef.current?.addEventListener('wheel', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-      });
+      const canvas = goDialogRef.current?.querySelector('canvas');
+      if (canvas) {
+        gsap.set(canvas, { opacity: 0 });
+      }
     }
     const size = [planeRef.current!.clientWidth, planeRef.current!.clientHeight];
 
@@ -62,26 +64,9 @@ export default function Header() {
     } else {
       setIsAway(true);
 
-      fetch(`https://trick.dongzx.lol/config/whereToGo.txt`, { cache: 'no-cache' }).then(async (res) => {
-        const text = await res.text();
-        const arr = text.split('\n');
-
-        const ps: { url: string; place: string; href: string }[] = [];
-        const infoSize = 3;
-        for (let i = 0; i < arr.length; i += infoSize) {
-          const [url, place, href] = arr.slice(i, i + infoSize);
-          ps.push({
-            url,
-            place,
-            href
-          });
-        }
-
+      fetch(`/config/whereToGo.json`, { cache: 'no-cache' }).then(async (res) => {
+        const ps = await res.json();
         setPhotos(ps);
-
-        plRef.current?.addEventListener('wheel', (e) => {
-          gsap.to(plRef.current, { scrollLeft: plRef.current!.scrollLeft + e.deltaY });
-        });
       });
 
       tl.to(planeRef.current, { color: '#fff', duration: 0 }).to(
@@ -120,8 +105,23 @@ export default function Header() {
           left: 0,
           autoAlpha: 1,
           duration: 1.6,
-          ease: 'power4.inOut'
+          ease: 'power4.inOut',
+          onStart: () => {
+            const canvas = goDialogRef.current?.querySelector('canvas');
+            if (canvas) {
+              gsap.to(canvas, {
+                opacity: 1,
+                duration: 3,
+                ease: 'power2.inOut'
+              });
+            }
+          }
         },
+        1
+      ).fromTo(
+        goDialogRef.current,
+        { filter: 'blur(15px)' },
+        { filter: 'blur(0px)', duration: 2, ease: 'power2.out' },
         1
       );
       tl.to(
@@ -150,7 +150,7 @@ export default function Header() {
     <>
       <header id="nav" className="header">
         <div className="header-content flex items-center">
-          <div className="title" onClick={() => (window.location.href = '/')}>
+          <div className="title" onClick={() => setActiveArticle(null)}>
             ESCAPE
           </div>
           <div className="ml-auto where-to-go" onClick={onWhereToGo}>
@@ -180,19 +180,31 @@ export default function Header() {
         </div>
       </header>
       <div className="where-to-go-dialog" ref={goDialogRef}>
+        <header>
+          <p>EXPLORE THE WORLD</p>
+          <h1>WHERE TO GO</h1>
+        </header>
         <div className="photo-list" ref={plRef}>
-          {photos.map((photo, index) => (
-            <div
-              key={index}
-              className="photo-item"
-              onClick={() => {
-                window.open(photo.href, '_blank');
-              }}
-            >
-              <img src={photo.url} alt="photo" />
-              <div className="photo-title">{photo.place}</div>
-            </div>
-          ))}
+          {photos.map((photo, index) => {
+            const depths = ['', 'slower', 'slower1', 'slower2', 'faster', 'faster1', 'vertical'];
+            const depthClass = depths[index % depths.length];
+            return (
+              <div
+                key={index}
+                className={`photo-item ${depthClass}`}
+                onClick={() => {
+                  onWhereToGo();
+                  const slug = photo.href.split('/').pop()?.replace('.html', '') || null;
+                  setActiveArticle(slug);
+                }}
+              >
+                <div className="item-content">
+                  <img src={photo.url} alt="photo" />
+                  <div className="photo-title">{photo.place}</div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

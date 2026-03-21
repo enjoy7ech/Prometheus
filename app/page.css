@@ -5,11 +5,10 @@
   .bg-video {
     object-fit: cover;
     position: fixed;
-    top: 10vh;
-    left: 0;
-    height: 80vh;
+    inset: 0;
+    height: 100vh;
     width: 100vw;
-    z-index: 1;
+    z-index: 0;
     opacity: 0;
   }
 
@@ -21,7 +20,8 @@
     position: fixed;
     mix-blend-mode: overlay;
     filter: drop-shadow(2px 4px 6px #292929);
-    > * {
+
+    >* {
       opacity: 0;
     }
   }
@@ -36,7 +36,7 @@
     right: 15vw;
   }
 
-  .sec-3 {
+  .sec-3, .sec-4 {
     top: 50vh;
     left: 50vw;
     transform: translateX(-50%);

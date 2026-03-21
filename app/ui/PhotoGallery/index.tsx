@@ -79,28 +79,10 @@ export default function PhotoGallery({ album, onReady }: { album: string; onRead
 
   useEffect(() => {
     if (album)
-      fetch(`https://trick.dongzx.lol/config/${album}.txt`, { cache: 'no-cache' }).then(async (res) => {
-        const text = await res.text();
-        const arr = text.split('\n');
-
-        const ps = [];
-        const infoSize = 8;
-        for (let i = 0; i < arr.length; i += infoSize) {
-          const [url, bgPos, position, title, title2, latlng, description, tip] = arr.slice(i, i + infoSize);
-          ps.push({
-            id: i / infoSize,
-            url,
-            bgPos,
-            position,
-            title,
-            title2,
-            latlng,
-            description,
-            tip
-          });
-        }
+      fetch(`/config/${album}.json`, { cache: 'no-cache' }).then(async (res) => {
+        const data = await res.json();
+        const ps = data.map((p: any, i: number) => ({ ...p, id: i }));
         setPhotos(ps);
-
         onReady?.();
       });
   }, []);

@@ -1,0 +1,52 @@
+[
+  {
+    "url": "https://io.dongzx.lol/blog/jp/IMG_2982.JPG",
+    "bgPos": "center",
+    "position": "日本-千叶县",
+    "title": "成田",
+    "title2": "成田国际机场",
+    "latlng": "35.773459379543205, 140.38756600686762",
+    "description": "落地了！",
+    "tip": "计划了半年的出行企划"
+  },
+  {
+    "url": "https://io.dongzx.lol/blog/jp/IMG_2987.JPG",
+    "bgPos": "center bottom",
+    "position": "日本-东京都",
+    "title": "秋叶原",
+    "title2": "駅前",
+    "latlng": "35.69840093490112, 139.77415398703715",
+    "description": "来看BanG Dream！",
+    "tip": "第一次来东京，根本不热！"
+  },
+  {
+    "url": "https://io.dongzx.lol/blog/jp/IMG_3006.JPG",
+    "bgPos": "center",
+    "position": "日本-东京都",
+    "title": "秋叶原",
+    "title2": "Animate",
+    "latlng": "35.70067733816471, 139.771699781842",
+    "description": "Ave Mujica",
+    "tip": "难绷的假面，话说为什么动画后面拉了！"
+  },
+  {
+    "url": "https://io.dongzx.lol/blog/jp/IMG_3035.JPG",
+    "bgPos": "center",
+    "position": "日本-东京都",
+    "title": "新宿",
+    "title2": "大久保公园",
+    "latlng": "35.697449112990334, 139.70127975412697",
+    "description": "晚上还有有很多卖的",
+    "tip": "２万です！"
+  },
+  {
+    "url": "https://io.dongzx.lol/blog/jp/IMG_3004.JPG",
+    "bgPos": "center",
+    "position": "日本-东京都",
+    "title": "秋叶原",
+    "title2": "Bushiroad秋叶原总店",
+    "latlng": "35.700755751857734, 139.7717426971836",
+    "description": "MyGO!!!!!",
+    "tip": "还是MyGO好，不像某乐队尽是事儿逼"
+  }
+]

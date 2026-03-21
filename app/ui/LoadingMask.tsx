@@ -1,6 +1,7 @@
 'use client';
-import { useEffect, useImperativeHandle, useRef, Ref } from 'react';
+import { useEffect, useImperativeHandle, useRef, useState, Ref } from 'react';
 import '@/styles/glitch.css';
+import { gsap } from 'gsap';
 
 export type LoadingMaskHandle = {
   hide: () => Promise<void>;
@@ -8,126 +9,192 @@ export type LoadingMaskHandle = {
 
 export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
   const mask = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [canEnter, setCanEnter] = useState(false);
+  const [isAssetsLoaded, setIsAssetsLoaded] = useState(false);
+  const [isFontLoaded, setIsFontLoaded] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const resolveRef = useRef<(() => void) | null>(null);
 
   useImperativeHandle(ref, (): LoadingMaskHandle => {
     return {
       hide() {
         return new Promise((resolve) => {
-          setTimeout(() => {
-            mask.current?.remove();
-            resolve();
-          }, 1500);
+          setIsAssetsLoaded(true);
+          resolveRef.current = () => {
+            if (mask.current) {
+              const tl = gsap.timeline({
+                onComplete: () => {
+                  mask.current?.remove();
+                  resolve();
+                }
+              });
+              tl.to('.enter-btn-wrapper', { scale: 1.1, opacity: 0, duration: 0.4, ease: 'expo.in' })
+                .to(mask.current, { opacity: 0, duration: 0.6, ease: 'power2.inOut' }, '-=0.2');
+            } else {
+              resolve();
+            }
+          };
         });
       }
     };
   }, []);
 
+  // Check for font loading
   useEffect(() => {
-    mask.current?.addEventListener('wheel', (e) => {
+    if (typeof document !== 'undefined' && 'fonts' in document) {
+      document.fonts.ready.then(() => {
+        setIsFontLoaded(true);
+      });
+    } else {
+      setIsFontLoaded(true);
+    }
+  }, []);
+
+  // Show button only when progress is 100% AND font is loaded
+  useEffect(() => {
+    if (progress >= 100 && isFontLoaded) {
+      setTimeout(() => {
+        setCanEnter(true);
+      }, 500);
+    }
+  }, [progress, isFontLoaded]);
+
+  useEffect(() => {
+    if (canEnter) {
+      const tl = gsap.timeline();
+      tl.fromTo('.enter-btn-wrapper', 
+        { opacity: 0, scale: 0.9, filter: 'blur(20px)' },
+        { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.5, ease: 'expo.out' }
+      );
+      
+
+      gsap.to('.shimmer', {
+        x: '100%',
+        duration: 2.5,
+        repeat: -1,
+        ease: 'none',
+        repeatDelay: 1
+      });
+    }
+  }, [canEnter]);
+
+  useEffect(() => {
+    if (!mask.current) return;
+    
+    let start = 0;
+    const interval = setInterval(() => {
+      if (isAssetsLoaded) {
+        start += 5;
+      } else {
+        start += Math.random() * 1.5;
+        if (start > 95) start = 95;
+      }
+
+      if (start >= 100) {
+        setProgress(100);
+        clearInterval(interval);
+      } else {
+        setProgress(start);
+      }
+    }, 80);
+
+    mask.current.addEventListener('wheel', (e) => {
       e.preventDefault();
       e.stopPropagation();
     });
     document.body.appendChild(mask.current!);
 
-    if (canvasRef.current) {
-      const padding = 50;
-      const w = 1489;
-      const h = 340;
-      const W = w + padding * 2;
-      const H = h + padding * 2;
-      const wOffset = [15, 0];
-      const rgbOffset: [number, number][] = [
-        [-5, 5],
-        [5, 5],
-        [5, -5]
-      ];
-      const glitchStrength = [
-        [10, 4],
-        [10, 5],
-        [14, 10]
-      ];
-      const getOffset = ([dx, dy]: [number, number]) => {
-        return dy * W * 4 + dx * 4;
-      };
-      const isWhite = (r: number, g: number, b: number) => r === 255 && g === 255 && b === 255;
-      const isBlack = (r: number, g: number, b: number) => r === 0 && g === 0 && b === 0;
-      function randomMinusNToN(N: number, type: '-+' | '-' | '+' = '-+') {
-        if (type == '-+') return Math.floor(Math.random() * (2 * N + 1)) - N;
-        else if (type == '-') return -Math.floor(Math.random() * N);
-        else return Math.floor(Math.random() * N);
-      }
-      const ctx = canvasRef.current.getContext('2d', { willReadFrequently: true });
-      canvasRef.current.width = W;
-      canvasRef.current.height = H;
+    return () => clearInterval(interval);
+  }, [isAssetsLoaded]);
 
-      const img = new Image();
-      img.src = '/core.png';
-      let tick = 0;
-      const updateEvery = 3;
-      const draw = () => {
-        if (ctx && tick == 0) {
-          ctx.clearRect(0, 0, W, H);
-          ctx.drawImage(img, padding, padding, w, h);
-
-          const data = ctx.getImageData(0, 0, W, H);
-          const pixels = data.data;
-          const st = glitchStrength.map(([x, y]) => [randomMinusNToN(x), randomMinusNToN(y)]);
-          const st_w = [randomMinusNToN(wOffset[0], '-'), randomMinusNToN(wOffset[1], '-')];
-
-          const isPixelWhite = (i: number) => isWhite(pixels[i], pixels[i + 1], pixels[i + 2]);
-          const isPixelBlack = (i: number) => isBlack(pixels[i], pixels[i + 1], pixels[i + 2]);
-
-          for (let i = 0; i < pixels.length; i += 4) {
-            if (i % W === 0) {
-              st_w[0] = randomMinusNToN(wOffset[0], '-');
-            }
-            const r = pixels[i];
-            const g = pixels[i + 1];
-            const b = pixels[i + 2];
-            const isWhite = r === 255 && g === 255 && b === 255;
-            const offset_w = getOffset([st_w[0], st_w[1]]);
-            if (isWhite && isPixelBlack(i + offset_w)) {
-              pixels[i] = 0;
-              pixels[i + 1] = 0;
-              pixels[i + 2] = 0;
-              pixels[i + 3] = 0;
-              pixels[i + offset_w] = 255;
-              pixels[i + offset_w + 1] = 255;
-              pixels[i + offset_w + 2] = 255;
-              pixels[i + offset_w + 3] = 255;
-            }
-
-            const offset = rgbOffset.map((v, i) => getOffset([v[0] + st[i][0], v[1] + st[i][1]]));
-
-            // if (isWhite && isPixelBlack(i + offset[0])) {
-            //   pixels[i + offset[0]] = 255;
-            //   pixels[i + offset[0] + 3] = 255;
-            // }
-            // if (isWhite && isPixelBlack(i + offset[1])) {
-            //   pixels[i + offset[1] + 1] = 255;
-            //   pixels[i + offset[1] + 3] = 255;
-            // }
-            // if (isWhite && isPixelBlack(i + offset[2])) {
-            //   pixels[i + offset[2] + 2] = 255;
-            //   pixels[i + offset[2] + 3] = 255;
-            // }
-          }
-          ctx.putImageData(data, 0, 0);
-        }
-        tick = (tick + 1) % updateEvery;
-        requestAnimationFrame(draw);
-      };
-
-      img.onload = () => {
-        requestAnimationFrame(draw);
-      };
+  const handleEnter = () => {
+    if (canEnter && resolveRef.current) {
+      window.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+      resolveRef.current();
     }
-  }, []);
+  };
 
   return (
-    <div className="loading-mask" ref={mask}>
-      <canvas ref={canvasRef} />
+    <div className="loading-mask fixed inset-0 z-[10000] bg-[#030303] flex flex-col items-center justify-center cursor-default overflow-hidden" ref={mask}>
+      <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_200px_rgba(0,0,0,0.9)] z-10"></div>
+      
+      <div className="relative flex flex-col items-center justify-center w-full h-full" ref={containerRef}>
+        
+        {/* Loading Phase UI */}
+        {!canEnter && (
+          <div className="relative z-20 flex flex-col items-center gap-12">
+            <div className="relative flex flex-col items-center">
+               <div className="text-white/20 text-[10px] tracking-[0.8em] uppercase font-light animate-pulse mb-6">
+                 Synchronizing Journey
+               </div>
+               <div className="relative w-64 h-[2px] bg-white/5 overflow-hidden">
+                 <div 
+                   className="absolute top-0 left-0 h-full bg-white transition-all duration-300"
+                   style={{ width: `${progress}%` }}
+                 />
+               </div>
+               <div className="mt-6 font-mono text-white/40 text-[9px] tracking-[0.4em]">
+                 LOADING / {Math.floor(progress).toString().padStart(3, '0')}%
+               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Entrance Button */}
+        {canEnter && (
+          <div className="enter-btn-wrapper relative z-30 flex flex-col items-center cursor-pointer" onClick={handleEnter}>
+             <div className="absolute inset-0 -m-20 border border-white/5 rounded-full scale-110 animate-[spin_20s_linear_infinite]"></div>
+             <div className="absolute inset-0 -m-16 border border-white/10 rounded-full scale-100 animate-[spin_15s_linear_infinite_reverse]"></div>
+
+             <div className="group relative overflow-hidden px-16 py-10 backdrop-blur-3xl transition-all duration-700">
+                {/* Minimalist Top/Bottom Double Borders */}
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10 group-hover:bg-white/40 transition-all duration-700"></div>
+                <div className="absolute top-[4px] left-[15%] w-[70%] h-[1px] bg-white/5"></div>
+                
+                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/10 group-hover:bg-white/40 transition-all duration-700"></div>
+                <div className="absolute bottom-[4px] left-[15%] w-[70%] h-[1px] bg-white/5"></div>
+
+                <div className="shimmer absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none"></div>
+
+                <div className="flex flex-col items-center gap-6 relative">
+                  <div className="flex flex-col items-center gap-4 md:gap-6 transition-all duration-700">
+                    <div className="flex gap-4 md:gap-6">
+                      {'行者无悔'.split('').map((char, index) => (
+                        <span 
+                          key={index} 
+                          className="text-white text-4xl md:text-6xl select-none transition-all duration-700 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
+                          style={{ fontFamily: 'f_zs' }}
+                        >
+                          {char}
+                        </span>
+                      ))}
+                    </div>
+                    {/* Horizontal Divider */}
+                    <div className="h-[1px] w-8 bg-white/20 group-hover:w-full transition-all duration-1000"></div>
+                    <span className="text-white/40 text-sm md:text-base font-thin tracking-[1.5em] uppercase select-none transition-all duration-700 group-hover:text-white/60 translate-x-[0.75em]">
+                      Escape
+                    </span>
+                  </div>
+                </div>
+             </div>
+
+             <div className="mt-16 flex flex-col items-center gap-6">
+                <div className="h-16 w-[1px] bg-gradient-to-b from-white/40 to-transparent"></div>
+                <span className="text-white/20 text-[10px] tracking-[1.2em] uppercase font-thin animate-pulse">
+                  Start your journey
+                </span>
+             </div>
+          </div>
+        )}
+      </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }

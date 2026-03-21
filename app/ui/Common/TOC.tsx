@@ -23,6 +23,8 @@ export default function TOC() {
     setHeadings(items);
 
     // 重新设计：使用更精确的滚动计算替代 IntersectionObserver
+    const scrollContainer = document.querySelector('.article-overlay') || window;
+    
     const handleScroll = () => {
       let currentId = '';
       // 获取页面的垂直居中区域作为触发线
@@ -35,8 +37,9 @@ export default function TOC() {
         }
       }
       
+      const scrollY = scrollContainer === window ? window.scrollY : (scrollContainer as HTMLElement).scrollTop;
       // 如果还没滑到第一个标题，或者页面位于最顶部
-      if (!currentId && elements.length > 0 && window.scrollY < 100) {
+      if (!currentId && elements.length > 0 && scrollY < 100) {
         currentId = elements[0].id;
       }
       
@@ -45,24 +48,34 @@ export default function TOC() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    scrollContainer.addEventListener('scroll', handleScroll as any, { passive: true });
     // 初始计算
     setTimeout(handleScroll, 200);
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => scrollContainer.removeEventListener('scroll', handleScroll as any);
   }, [activeId]);
 
   const handleClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      // 获取当前元素的绝对位置
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: elementPosition - 100, // 减去头部留白
-        behavior: 'smooth'
-      });
-      window.history.pushState(null, '', `#${id}`);
+      const scrollContainer = document.querySelector('.article-overlay') || window;
+      // 获取当前元素的相对容器顶部的偏移
+      const rect = element.getBoundingClientRect();
+      const currentScrollTop = scrollContainer === window ? window.scrollY : (scrollContainer as HTMLElement).scrollTop;
+      const targetTop = rect.top + currentScrollTop - 100;
+      
+      if (scrollContainer === window) {
+        window.scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
+        });
+      } else {
+        (scrollContainer as HTMLElement).scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 

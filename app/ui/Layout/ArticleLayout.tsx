@@ -30,7 +30,7 @@ export default function NormalLayout({
   return (
     <>
       <Header></Header>
-      <div className="grain"></div>
+      {/* <div className="grain"></div> */}
       <div id="smooth-wrapper">
         <div id="smooth-content">{children}</div>
       </div>

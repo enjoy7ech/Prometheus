@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3853.JPG",
+    "bgPos": "center",
+    "position": "中国-上海",
+    "title": "上海港",
+    "title2": "向着福冈出发",
+    "latlng": "31.2347, 121.493",
+    "description": "此刻的我怀着激动的心情站在上海港口，准备开始一段前往日本福冈的邮轮之旅。",
+    "tip": "摆渡记行"
+  },
+  {
+    "url": "https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3849.JPG",
+    "bgPos": "center",
+    "position": "公海",
+    "title": "湛蓝海面",
+    "title2": "无际延伸",
+    "latlng": "30.5, 123.5",
+    "description": "从舷窗望去，湛蓝的海面无限延伸，远处的上海天际线逐渐消失在视野中。",
+    "tip": "航行中"
+  },
+  {
+    "url": "https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3851.JPG",
+    "bgPos": "center",
+    "position": "日本-福冈",
+    "title": "博多港",
+    "title2": "异国风情",
+    "latlng": "33.606, 130.398",
+    "description": "花园里盛开的绣球花在灰色石墙的映衬下格外美丽，日本人对绣球花有着很深的执着。",
+    "tip": "到达福冈"
+  },
+  {
+    "url": "https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3852.JPG",
+    "bgPos": "center",
+    "position": "日本-福冈",
+    "title": "福冈駅",
+    "title2": "造型独特",
+    "latlng": "33.590, 130.420",
+    "description": "福冈的魅力在于它传统与现代的交融，这短暂的停留成为旅程中难忘的插曲。",
+    "tip": "城市漫步"
+  }
+]
