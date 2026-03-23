@@ -12,7 +12,6 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [canEnter, setCanEnter] = useState(false);
   const [isAssetsLoaded, setIsAssetsLoaded] = useState(false);
-  const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
   const resolveRef = useRef<(() => void) | null>(null);
 
@@ -40,25 +39,14 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
     };
   }, []);
 
-  // Check for font loading
+  // Show button only when progress is 100%
   useEffect(() => {
-    if (typeof document !== 'undefined' && 'fonts' in document) {
-      document.fonts.ready.then(() => {
-        setIsFontLoaded(true);
-      });
-    } else {
-      setIsFontLoaded(true);
-    }
-  }, []);
-
-  // Show button only when progress is 100% AND font is loaded
-  useEffect(() => {
-    if (progress >= 100 && isFontLoaded) {
+    if (progress >= 100) {
       setTimeout(() => {
         setCanEnter(true);
       }, 500);
     }
-  }, [progress, isFontLoaded]);
+  }, [progress]);
 
   useEffect(() => {
     if (canEnter) {
@@ -159,16 +147,12 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
 
                 <div className="flex flex-col items-center gap-6 relative">
                   <div className="flex flex-col items-center gap-4 md:gap-6 transition-all duration-700">
-                    <div className="flex gap-4 md:gap-6">
-                      {'行者无悔'.split('').map((char, index) => (
-                        <span 
-                          key={index} 
-                          className="text-white text-4xl md:text-6xl select-none transition-all duration-700 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
-                          style={{ fontFamily: 'f_zs' }}
-                        >
-                          {char}
-                        </span>
-                      ))}
+                    <div className="flex justify-center">
+                      <img 
+                        src="/logo.png" 
+                        alt="行者无悔" 
+                        className="h-12 md:h-16 select-none transition-all duration-700 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
+                      />
                     </div>
                     {/* Horizontal Divider */}
                     <div className="h-[1px] w-8 bg-white/20 group-hover:w-full transition-all duration-1000"></div>

@@ -24,8 +24,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zhCN" suppressHydrationWarning>
-      <head></head>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (hover: hover) {
+            * { cursor: none !important; }
+            #initial-cursor {
+              position: fixed;
+              top: 0; left: 0;
+              width: 6px; height: 6px;
+              background: white; border-radius: 50%;
+              transform: translate(-50%, -50%) translate(var(--mx, -20px), var(--my, -20px));
+              pointer-events: none; z-index: 1000000;
+              mix-blend-mode: difference;
+            }
+          }
+        ` }} />
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+            document.documentElement.style.setProperty('--my', e.clientY + 'px');
+          }, { passive: true });
+        ` }} />
+      </head>
       <body>
+        <div id="initial-cursor"></div>
         <NavProvider>
           <CustomCursor />
           <ArticleOverlay />

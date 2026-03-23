@@ -12,6 +12,10 @@ export default function CustomCursor() {
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
+    // Hide the initial static cursor once we hydrate
+    const initialCursor = document.getElementById('initial-cursor');
+    if (initialCursor) initialCursor.style.display = 'none';
+
     // Only enable for mouse devices
     if (window.matchMedia('(hover: none)').matches) {
         dot.style.display = 'none';
