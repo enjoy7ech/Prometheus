@@ -37,6 +37,13 @@
 
 body {
   font-family: f_sc, Arial, Helvetica, sans-serif;
+  cursor: none;
+}
+
+@media (hover: none) {
+  body {
+    cursor: auto;
+  }
 }
 
 @layer base {

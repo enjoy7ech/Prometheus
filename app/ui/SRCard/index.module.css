@@ -169,13 +169,14 @@
     }
     .tip {
       position: absolute;
-      left: 1em;
-      bottom: 1em;
-      right: 1em;
+      left: 2em;
+      top: 2em;
+      right: 2em;
       font-size: calc(min(2cqw, 10cqh));
       font-family: 'f_qkh';
-      text-align: right;
+      text-align: left;
       filter: url(#sticker);
+      line-height: 1.6;
     }
   }
 }

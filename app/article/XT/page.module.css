@@ -1,5 +1,5 @@
 .container {
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
     overflow: hidden;
     position: relative;
@@ -13,7 +13,6 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    cursor: none;
     background-color: #030303;
     transition: background-color 1.2s ease-in-out;
 }
@@ -33,7 +32,6 @@
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.4);
     background: none;
-    cursor: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -117,23 +115,6 @@
     margin-top: 12px;
 }
 
-.cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    z-index: 100;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 24px;
-    font-weight: 400;
-}
 
 .right {
     position: absolute;
@@ -157,8 +138,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 55%;
-    aspect-ratio: 1.4;
+    width: 65%;
+    aspect-ratio: 1.45;
     overflow: hidden;
     border-radius: 4px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
@@ -189,12 +170,13 @@
     }
 
     .slide {
-        width: 60%;
+        width: 70%;
     }
 
     .cursor {
         width: 88px;
         height: 88px;
+        display: flex;
     }
 }
 
@@ -220,6 +202,6 @@
     }
 
     .slide {
-        width: 68%;
+        width: 80%;
     }
 }

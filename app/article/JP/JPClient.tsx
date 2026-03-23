@@ -8,7 +8,7 @@ export default function JPClient() {
   return (
     <div className={styles.article}>
       <div className={styles.header}>
-        <PhotoGallery album="jp" onReady={() => {}}></PhotoGallery>
+        <PhotoGallery album="jp" onReady={() => { }}></PhotoGallery>
       </div>
 
       <div className={styles.mainContainer}>
@@ -336,8 +336,8 @@ export default function JPClient() {
                 title: '素敵な夜をありがとう',
                 title2: '',
                 latlng: '',
-                description: '真的感谢带来这么美妙的live',
-                tip: '素敵な夜をありがとう'
+                description: '',
+                tip: '真的感谢带来这么美妙的live'
               }}
             />
           </section>

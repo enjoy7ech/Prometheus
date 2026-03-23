@@ -33,8 +33,8 @@ export default function LBXClient() {
                 title: '入山',
                 title2: '通往山野的第一步',
                 latlng: '31.258, 120.495',
-                description: '深吸一口山间的湿润空气，城市的喧嚣在身后迅速褪去。',
-                tip: ''
+                description: '',
+                tip: '深吸一口山间的湿润空气，城市的喧嚣在身后迅速褪去。'
               }}
             ></SRImage>
             <p>
@@ -60,8 +60,8 @@ export default function LBXClient() {
                   title: '攀越',
                   title2: '指尖与岩石的摩擦',
                   latlng: '31.265, 120.492',
-                  description: '在这条路上，每个人都是最纯粹的探险者。',
-                  tip: ''
+                  description: '',
+                  tip: '在这条路上，每个人都是最纯粹的探险者。'
                 }}
               ></SRImage>
               <p>
@@ -81,8 +81,8 @@ export default function LBXClient() {
                 title: '侧影',
                 title2: '山脊上的起伏',
                 latlng: '31.260, 120.490',
-                description: '山脊线像一道波浪，载着我们翻过一座又一座山头。',
-                tip: ''
+                description: '',
+                tip: '山脊线像一道波浪，载着我们翻过一座又一座山头。'
               }}
             ></SRImage>
           </section>
@@ -105,8 +105,8 @@ export default function LBXClient() {
                   title: '微光',
                   title2: '夕阳下的最后坚持',
                   latlng: '31.270, 120.485',
-                  description: '天色渐暗，群山的轮廓却愈发清晰。',
-                  tip: ''
+                  description: '',
+                  tip: '天色渐暗，群山的轮廓却愈发清晰。'
                 }}
               ></SRImage>
               <p>
@@ -126,8 +126,8 @@ export default function LBXClient() {
                 title: '归处',
                 title2: '与自我的握手言和',
                 latlng: '31.280, 120.480',
-                description: '最好的冒险，结局永远是那个满身汗水却心满意足的自己。',
-                tip: ''
+                description: '',
+                tip: '最好的冒险，结局永远是那个满身汗水却心满意足的自己。'
               }}
             ></SRImage>
           </section>

@@ -4,13 +4,17 @@ import { Metadata } from 'next';
 import AudioPlayer from '@/app/ui/AudioPlayer';
 import { NavProvider } from '@/context/NavContext';
 import ArticleOverlay from '@/app/ui/ArticleOverlay';
+import CustomCursor from '@/app/ui/Common/CustomCursor';
 
 export const metadata: Metadata = {
   title: {
     default: '行者无悔',
     template: '%s | 行者无悔'
   },
-  description: '只有失败过的人，才懂得我们为什么需要旅行。'
+  description: '只有失败过的人，才懂得我们为什么需要旅行。',
+  icons: {
+    icon: '/favicon.ico',
+  }
 };
 
 export default function RootLayout({
@@ -23,6 +27,7 @@ export default function RootLayout({
       <head></head>
       <body>
         <NavProvider>
+          <CustomCursor />
           <ArticleOverlay />
           <AudioPlayer />
           {children}

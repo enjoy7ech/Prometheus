@@ -33,8 +33,8 @@ export default function NJClient() {
                 title: '路口',
                 title2: '夜色把霓虹揉进人群',
                 latlng: '32.043, 118.783',
-                description: '新街口的路口总有些熟悉的招牌，和不断变换的橱窗。',
-                tip: ''
+                description: '',
+                tip: '新街口的路口总有些熟悉的招牌，和不断变换的橱窗。'
               }}
             ></SRImage>
             <p>
@@ -60,8 +60,8 @@ export default function NJClient() {
                   title: '巷口',
                   title2: '路灯下的橘色光晕',
                   latlng: '32.044, 118.784',
-                  description: '外面的世界热闹得像舞台，门外却有一处静默。',
-                  tip: ''
+                  description: '',
+                  tip: '外面的世界热闹得像舞台，门外却有一处静默。'
                 }}
               ></SRImage>
               <p>
@@ -91,8 +91,8 @@ export default function NJClient() {
                   title: '龙吟九品',
                   title2: '巷弄里的重逢',
                   latlng: '32.040, 118.785',
-                  description: '空气里飘着淡淡的桂花香，我们聊着各自的近况。',
-                  tip: ''
+                  description: '',
+                  tip: '空气里飘着淡淡的桂花香，我们聊着各自的近况。'
                 }}
               ></SRImage>
               <p>
@@ -112,8 +112,8 @@ export default function NJClient() {
                 title: '莫愁的态度',
                 title2: '把生活折叠成有温度的模样',
                 latlng: '32.035, 118.780',
-                description: '学会与自己握手言和，学会用柔软对待世界。',
-                tip: ''
+                description: '',
+                tip: '学会与自己握手言和，学会用柔软对待世界。'
               }}
             ></SRImage>
             <p>
