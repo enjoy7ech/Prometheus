@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import PhotoGallery from '@/app/ui/PhotoGallery';
 import SRImage from '@/app/ui/Common/SRImage';
 import TOC from '@/app/ui/Common/TOC';
+import ArticleNextFooter from '@/app/ui/Common/ArticleNextFooter';
 
 export default function NJClient() {
   return (
@@ -125,6 +126,7 @@ export default function NJClient() {
           </section>
         </article>
       </div>
+      <ArticleNextFooter />
     </div>
   );
 }

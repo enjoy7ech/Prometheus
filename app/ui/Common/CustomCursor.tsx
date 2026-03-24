@@ -124,7 +124,8 @@ export default function CustomCursor() {
           zIndex: 999998,
           transform: 'translate(-50%, -50%)',
           opacity: 0,
-          transition: 'opacity 0.3s ease'
+          transition: 'opacity 0.3s ease',
+          mixBlendMode: 'difference'
         }}
       />
       <div
@@ -141,7 +142,8 @@ export default function CustomCursor() {
           zIndex: 999999,
           transform: 'translate(-50%, -50%)',
           opacity: 0,
-          transition: 'opacity 0.3s ease'
+          transition: 'opacity 0.3s ease',
+          mixBlendMode: 'difference'
         }}
       />
     </>

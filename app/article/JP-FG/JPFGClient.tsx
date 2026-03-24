@@ -10,7 +10,7 @@ export default function JPFGClient() {
     <div className={styles.article}>
       <div className={styles.header}>
         {/* 这里延用 JP 的 album="jp" 以保持视觉统一，也可以根据需要更换 */}
-        <PhotoGallery album="jp-fg" onReady={() => {}}></PhotoGallery>
+        <PhotoGallery album="jp-fg" onReady={() => { }}></PhotoGallery>
       </div>
 
       <div className={styles.mainContainer}>
@@ -76,7 +76,7 @@ export default function JPFGClient() {
                 className="right w-1/3 rounded-lg shadow-sm ml-6 mb-4"
                 photo={{
                   id: 3,
-                  url: 'https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3851.JPG',
+                  url: 'https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3851.jpg',
                   bgPos: 'center',
                   position: '',
                   title: '绣球花',
@@ -128,9 +128,9 @@ export default function JPFGClient() {
             <p>
               整整两天，我们被困在公海上。龙卷风干扰了导航，由于剧烈的颠簸感让我难以行走，大家便只能躺在床上聊天。
             </p>
-            <video 
-              src="https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3854.MP4" 
-              controls 
+            <video
+              src="https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3854.mp4"
+              controls
               className="w-full rounded-lg shadow-lg my-8"
             />
           </section>

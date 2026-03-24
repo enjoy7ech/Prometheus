@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import PhotoGallery from '@/app/ui/PhotoGallery';
 import SRImage from '@/app/ui/Common/SRImage';
 import TOC from '@/app/ui/Common/TOC';
+import ArticleNextFooter from '@/app/ui/Common/ArticleNextFooter';
 
 export default function LBXClient() {
   return (
@@ -148,6 +149,7 @@ export default function LBXClient() {
               这是我作为“剪辑新手”的第一份作业。画面里那些山风掠过的声音、鞋底蹭过碎石的沉闷响声，都被我小心翼翼地藏进了进度条里。灵白线，不只是我走过的路，也是我镜头下第一段被重新赋予节奏的故事。
             </p>
           </section>
+          <ArticleNextFooter />
         </article>
       </div>
     </div>
