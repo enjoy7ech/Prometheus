@@ -49,9 +49,9 @@ export default function Home() {
         const vdEl = new Set([...vdStartEl, ...vdEndEl]);
 
         const tl = gsap.timeline();
-        
+
         // UNLEASHED ENTRANCE: Dramatic video zoom out and fade in
-        tl.fromTo(vd, 
+        tl.fromTo(vd,
           { opacity: 0, scale: 1.05, filter: 'blur(10px)' },
           { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.6, ease: 'expo.out' }
         );
@@ -69,21 +69,21 @@ export default function Home() {
             const et = Number(dataset.vdEnd);
             // Target the actual content wrapper or paragraphs
             const target = el.querySelector('div') || el;
-            
+
             tl.to(target, {
-                opacity: 1,
-                y: -10,
-                filter: 'blur(0px)',
-                duration: 0.7,
-                ease: 'power3.out'
+              opacity: 1,
+              y: -10,
+              filter: 'blur(0px)',
+              duration: 0.7,
+              ease: 'power3.out'
             }, st);
-            
+
             tl.to(target, {
-                opacity: 0,
-                y: -60,
-                filter: 'blur(10px)',
-                duration: 0.6,
-                ease: 'power2.in'
+              opacity: 0,
+              y: -60,
+              filter: 'blur(10px)',
+              duration: 0.6,
+              ease: 'power2.in'
             }, et - 0.5);
           }
         });
@@ -118,28 +118,28 @@ export default function Home() {
 
   const fixedContent = (
     <>
-        <video className="bg-video w-full h-full object-cover fixed inset-0 z-0" id="banner-v" src="/banner-v.webm" muted preload="auto"></video>
-        {/* Cinematic & Oversized Scroll Hint - Centered */}
-        <div className="scroll-hint fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-12 z-20 pointer-events-none opacity-0">
-          <div className="relative w-20 h-32 border-[3px] border-white/20 rounded-full flex justify-center group scale-110">
-             {/* Large Pulsing Halo */}
-             <div className="absolute inset-0 border-[3px] border-white/10 rounded-full animate-ping scale-125"></div>
-             {/* Weighted Wheel Element */}
-             <div className="w-1.5 h-6 bg-white/70 mt-6 rounded-full animate-[wheel-roll_1.5s_infinite]"></div>
-          </div>
-          <div className="flex flex-col items-center gap-4">
-            <span className="text-white/40 text-[9px] md:text-[11px] tracking-[1.8em] uppercase font-light translate-x-[0.9em] animate-pulse whitespace-nowrap">
-              Scroll to explore
-            </span>
-          </div>
+      <video className="bg-video w-full h-full object-cover fixed inset-0 z-0" id="banner-v" src="/banner-v.webm" muted playsInline loop preload="auto" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" style={{ background: '#000' }}></video>
+      {/* Cinematic & Oversized Scroll Hint - Centered */}
+      <div className="scroll-hint fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-12 z-20 pointer-events-none opacity-0">
+        <div className="relative w-20 h-32 border-[3px] border-white/20 rounded-full flex justify-center group scale-110">
+          {/* Large Pulsing Halo */}
+          <div className="absolute inset-0 border-[3px] border-white/10 rounded-full animate-ping scale-125"></div>
+          {/* Weighted Wheel Element */}
+          <div className="w-1.5 h-6 bg-white/70 mt-6 rounded-full animate-[wheel-roll_1.5s_infinite]"></div>
         </div>
+        <div className="flex flex-col items-center gap-4">
+          <span className="text-white/40 text-[9px] md:text-[11px] tracking-[1.8em] uppercase font-light translate-x-[0.9em] animate-pulse whitespace-nowrap">
+            Scroll to explore
+          </span>
+        </div>
+      </div>
     </>
   );
 
   return (
     <NormalLayout duration={1.2} fixedContent={fixedContent}>
       <div id="scroll-trigger-container" ref={container} className="flex flex-col relative bg-transparent">
-        
+
         <section className="sec sec-1 items-center px-8" data-vd-start="0.3" data-vd-end="2.3">
           <div className="flex flex-col gap-4">
             <p className="text-white text-3xl md:text-6xl font-extralight tracking-[0.4em]">只有失败过的人</p>
