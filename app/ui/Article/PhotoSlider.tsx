@@ -72,6 +72,15 @@ export default function PhotoSlider({
     };
   };
 
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    // Set initial title on mount
+    document.title = `${articleName} | 行者无悔`;
+    return () => { isMountedRef.current = false; };
+  }, [articleName]);
+
   const handleGo = useCallback((direction: 'next' | 'prev') => {
     if (isAnimatingRef.current) return;
     isAnimatingRef.current = true;
@@ -85,7 +94,9 @@ export default function PhotoSlider({
       duration: 1.2,
       ease: 'power2.inOut',
       onComplete: () => {
-        document.title = `${articleName}：${slides[nextIdx].name}`;
+        if (isMountedRef.current) {
+          document.title = `${articleName}：${slides[nextIdx].name} | 行者无悔`;
+        }
         isAnimatingRef.current = false;
         setIsAnimating(false);
       }

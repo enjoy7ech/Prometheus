@@ -124,7 +124,7 @@ export default function SRCard({ ref }: { ref: Ref<unknown> }) {
       }
     };
 
-    maskRef.current?.addEventListener('wheel', onWheel);
+    maskRef.current?.addEventListener('wheel', onWheel, { passive: false });
 
     document.body.appendChild(maskRef.current!);
 

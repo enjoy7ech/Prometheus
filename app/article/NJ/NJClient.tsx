@@ -124,9 +124,9 @@ export default function NJClient() {
               新街口教会我的，是在这就快要转不动的快节奏里，依然能把日子折叠成那种有温度的样子。在喧嚣里安放一颗柔软的心，这大概就是南京教给我的、最舒服的活法。
             </p>
           </section>
+          <ArticleNextFooter />
         </article>
       </div>
-      <ArticleNextFooter />
     </div>
   );
 }

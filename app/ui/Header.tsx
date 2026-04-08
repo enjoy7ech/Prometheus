@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNav } from '@/context/NavContext';
 import { gsap } from 'gsap';
 import smoke from '@/utils/UI/smoke';
@@ -146,6 +146,83 @@ export default function Header() {
     }
   };
 
+  useEffect(() => {
+    const list = plRef.current;
+    if (!list || photos.length === 0) return;
+
+    let isDown = false;
+    let startX: number;
+    let scrollTopStart: number;
+    let moved = false;
+
+    // Force horizontal touch behavior and prevent browser interference
+    list.style.touchAction = 'none';
+
+    const onStart = (e: any) => {
+      // For touch events, we must prevent default to take full control
+      if (e.cancelable) e.preventDefault();
+      
+      isDown = true;
+      moved = false;
+      const x = e.touches ? e.touches[0].pageX : e.pageX;
+      startX = x;
+      scrollTopStart = list.scrollTop;
+      list.style.cursor = 'grabbing';
+      (list.style as any).userSelect = 'none';
+    };
+
+    const onMove = (e: any) => {
+      if (!isDown) return;
+      const x = e.touches ? e.touches[0].pageX : e.pageX;
+      const dist = x - startX;
+      
+      if (Math.abs(dist) > 5) {
+        moved = true;
+        // Map horizontal drag distance to internal vertical scroll
+        // Right drag (+dist) -> scrollTop decreases (moves toward start) -> visual movement RIGHT
+        list.scrollTop = scrollTopStart - dist * 1.5;
+        if (e.cancelable) e.preventDefault();
+      }
+    };
+
+    const onEnd = () => {
+      isDown = false;
+      list.style.cursor = 'grab';
+      setTimeout(() => {
+        if (list) (list.style as any).userSelect = 'auto';
+      }, 50);
+    };
+
+    const onClick = (e: MouseEvent) => {
+      if (moved) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    list.addEventListener('mousedown', onStart);
+    list.addEventListener('touchstart', onStart, { passive: false });
+    
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('touchmove', onMove, { passive: false });
+    window.addEventListener('mouseup', onEnd);
+    window.addEventListener('touchend', onEnd);
+    window.addEventListener('touchcancel', onEnd);
+    
+    list.addEventListener('click', onClick, true);
+
+    return () => {
+      list.removeEventListener('mousedown', onStart);
+      list.removeEventListener('touchstart', onStart);
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('touchmove', onMove);
+      window.removeEventListener('mouseup', onEnd);
+      window.removeEventListener('touchend', onEnd);
+      window.removeEventListener('touchcancel', onEnd);
+      list.removeEventListener('click', onClick, true);
+    };
+  }, [photos]);
+
   return (
     <>
       <header id="nav" className="header">
@@ -211,7 +288,7 @@ export default function Header() {
                 }}
               >
                 <div className="item-content">
-                  <img src={photo.url} alt="photo" />
+                  <img src={photo.url} alt="photo" draggable="false" />
                   <div className="photo-title">{photo.place}</div>
                 </div>
               </div>

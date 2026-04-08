@@ -80,7 +80,11 @@
   align-items: center;
   position: relative;
   --fz: calc(min(0.6cqw, 10cqh));
-  --w: calc(min(15cqw, 200px));
+  --w: calc(min(25cqw, 200px));
+
+  @media (min-width: 1024px) {
+    --w: calc(min(15cqw, 200px));
+  }
 
   .photo {
     z-index: 1;

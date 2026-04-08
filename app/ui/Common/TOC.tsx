@@ -11,6 +11,7 @@ interface TOCItem {
 export default function TOC() {
   const [headings, setHeadings] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // 提取所有带 anchor 类的标题
@@ -82,15 +83,39 @@ export default function TOC() {
   if (headings.length === 0) return null;
 
   return (
-    <nav className="fixed right-3 lg:right-6 xl:right-10 top-1/2 -translate-y-1/2 z-50 hidden md:block">
-      <div 
-        className="group/nav relative flex flex-col py-7 px-[14px] rounded-[32px] overflow-hidden
-          backdrop-blur-[40px] backdrop-saturate-[250%] bg-white/40 border border-white/70 
-          shadow-[0_24px_48px_-12px_rgba(0,0,0,0.1),inset_0_1px_4px_rgba(255,255,255,1),inset_0_-1px_4px_rgba(0,0,0,0.05)] 
-          transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white/60 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)]"
+    <>
+      {/* Mobile Toggle Button */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-6 left-6 w-14 h-14 rounded-full bg-black text-white z-[60] flex items-center justify-center shadow-2xl md:hidden transition-transform active:scale-90"
       >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          {isOpen ? <path d="M18 6L6 18M6 6l12 12"/> : <path d="M3 12h18M3 6h18M3 18h18"/>}
+        </svg>
+      </button>
+
+      <nav className={`
+        fixed z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+        ${isOpen 
+          ? 'inset-0 bg-white/60 backdrop-blur-xl flex items-center justify-center' 
+          : 'right-3 lg:right-6 xl:right-10 top-1/2 -translate-y-1/2 hidden md:block'}
+      `}>
+        <div 
+          onClick={(e) => e.stopPropagation()}
+          className={`
+            group/nav relative flex flex-col overflow-hidden transition-all duration-700
+            backdrop-blur-[40px] backdrop-saturate-[250%] bg-white/40 border border-white/70 
+            shadow-[0_24px_48px_-12px_rgba(0,0,0,0.1),inset_0_1px_4px_rgba(255,255,255,1),inset_0_-1px_4px_rgba(0,0,0,0.05)] 
+            ${isOpen 
+              ? 'w-[85vw] max-h-[70vh] rounded-[24px] py-10 px-8 hover:bg-white/80' 
+              : 'py-7 px-[14px] rounded-[32px] hover:bg-white/60 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)]'}
+          `}
+        >
         <div className="flex justify-end w-full relative z-10 mb-6">
-          <div className="w-0 xl:w-[200px] group-hover/nav:w-[200px] transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden flex justify-end">
+          <div className={`
+            transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden flex justify-end
+            ${isOpen ? 'w-[200px]' : 'w-0 xl:w-[200px] group-hover/nav:w-[200px]'}
+          `}>
              <div className="text-[10px] font-black tracking-[0.25em] text-black/30 uppercase pr-3 whitespace-nowrap">
                 INDEX
              </div>
@@ -112,16 +137,17 @@ export default function TOC() {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                onClick={(e) => handleClick(e, item.id)}
-                className="group/item relative flex items-center justify-end cursor-pointer"
+                onClick={(e) => {
+                  handleClick(e, item.id);
+                  if (isOpen) setIsOpen(false);
+                }}
+                className="group/item relative flex items-center justify-end cursor-pointer py-1"
               >
                 {/* 动态液态文本容器 (动画撑开父级宽度) */}
                 <div className={`
                   overflow-hidden transition-all duration-[500ms] ease-[cubic-bezier(0.16,1,0.3,1)]
                   origin-right flex justify-end items-center
-                  w-0 opacity-0
-                  xl:w-[200px] xl:opacity-100 xl:pr-3 
-                  group-hover/nav:w-[200px] group-hover/nav:opacity-100 group-hover/nav:pr-3
+                  ${isOpen || 'xl:w-[200px] xl:opacity-100' ? 'w-[200px] opacity-100 pr-3' : 'w-0 opacity-0 group-hover/nav:w-[200px] group-hover/nav:opacity-100 group-hover/nav:pr-3'}
                 `}>
                   <div className={`
                     whitespace-nowrap transition-transform duration-[400ms] ease-out
@@ -155,7 +181,16 @@ export default function TOC() {
             );
           })}
         </div>
-      </div>
-    </nav>
+        </div>
+      </nav>
+      
+      {/* Overlay for closing menu on mobile */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-40 md:hidden" 
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+    </>
   );
 }

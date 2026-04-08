@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import PhotoGallery from '@/app/ui/PhotoGallery';
 import SRImage from '@/app/ui/Common/SRImage';
 import TOC from '@/app/ui/Common/TOC';
+import ArticleNextFooter from '@/app/ui/Common/ArticleNextFooter';
 
 export default function JPClient() {
   return (
@@ -454,6 +455,7 @@ export default function JPClient() {
             />
             <p>有了新的勇气, 相信下次相见不会太久!</p>
           </section>
+          <ArticleNextFooter />
         </article>
       </div>
     </div>

@@ -14,13 +14,17 @@ ScrollTrigger.config({
   limitCallbacks: true
 });
 
-if (typeof window !== 'undefined') {
-  ScrollTrigger.normalizeScroll(true);
-}
-
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
   const maskRef = useRef<LoadingMaskHandle>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && ScrollTrigger.isTouch) {
+      ScrollTrigger.normalizeScroll({
+        allowClicks: true
+      });
+    }
+  }, []);
 
   useEffect(() => {
     whenDOMReady()
@@ -187,9 +191,14 @@ export default function Home() {
             <p className="text-white text-3xl md:text-6xl font-extralight tracking-[0.4em]">为什么活着</p>
           </div>
         </section>
+        {/* Placeholder sections to ensure enough scroll depth if needed */}
+        <section className="sec-pad h-[20vh]"></section>
       </div>
 
       <style jsx>{`
+        #scroll-trigger-container {
+           touch-action: pan-y;
+        }
         @keyframes wheel-roll {
           0% { transform: translateY(0); opacity: 0; }
           20% { opacity: 1; }

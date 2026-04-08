@@ -49,15 +49,17 @@ export default function ArticleOverlay() {
   useEffect(() => {
     if (activeArticle) {
       const titles: Record<string, string> = {
-        'NJ': '南京',
-        'LBX': '灵白线',
-        'JP': '锦溪',
-        'JP-FG': '锦溪-番故',
-        'XT': '斜塘',
-        'SH': '石湖'
+        'NJ': '莫愁，莫愁',
+        'LBX': '灵白线：在巨石与山脊间寻找自由',
+        'JP': '日本行：玫瑰下的 Stille Nacht',
+        'JP-FG': '上海到福冈：一次惊心动魄的海上冒险',
+        'XT': '斜塘：重拾旧时的街道记忆',
+        'SH': '石湖：越堤之上的湖光山色'
       };
-      document.title = titles[activeArticle] || '行者无悔';
+      const baseTitle = titles[activeArticle] || '行者无悔';
+      document.title = `${baseTitle} | 行者无悔`;
     } else {
+      // Try to restore original title based on pathname if possible, fallback to default
       document.title = '行者无悔';
     }
   }, [activeArticle]);

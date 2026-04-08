@@ -142,6 +142,12 @@ body {
     padding: 0.25em 0;
   }
 
+  .header {
+    @media (max-width: 768px) {
+      aspect-ratio: 1/1 !important;
+    }
+  }
+
   h3 {
     font-size: calc(var(--g) * 3cqw);
     font-weight: 700;
@@ -175,23 +181,32 @@ body {
       font-feature-settings:
         'halt' 1,
         'kern' 1;
-      font-size: calc(var(--g) * 1.618cqw);
+      font-size: clamp(16px, calc(var(--g) * 1.618cqw), 24px);
       line-height: var(--g);
-      margin: 0.25em 0;
+      margin: 0.8em 0;
     }
 
     img {
-      width: 50cqw;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
       object-fit: cover;
+      margin: 1.5rem 0;
+      border-radius: 8px;
 
-      &.left {
-        float: left;
-        margin-right: 1em;
-      }
+      @media (min-width: 768px) {
+        width: 50cqw;
+        &.left {
+          float: left;
+          margin-right: 1.5em;
+          margin-top: 0.5em;
+        }
 
-      &.right {
-        float: right;
-        margin-left: 1em;
+        &.right {
+          float: right;
+          margin-left: 1.5em;
+          margin-top: 0.5em;
+        }
       }
     }
 
@@ -214,8 +229,8 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: calc(clamp(6.2vw, 6.2vw, 10vh));
-  padding: 0 2vw;
+  height: calc(clamp(50px, 6.2vw, 10vh));
+  padding: 0 4vw;
   z-index: 9998;
   transition: all 0.2s ease-in-out;
   will-change: backdrop-filter;
@@ -365,7 +380,8 @@ body {
     transform-origin: right top;
     overflow-y: auto;
     overflow-x: hidden;
-    perspective: 1px;
+    touch-action: none;
+    perspective: 1000px;
     transform-style: preserve-3d;
     padding-bottom: 25vh;
     scrollbar-width: none;
@@ -380,37 +396,31 @@ body {
       justify-content: center;
       min-height: 42vh;
       transform-origin: 50% 50%;
-      transform: rotate(90deg) translateZ(0.1px) scale(0.9) translateY(-3vh);
-      transition: min-height 1s ease;
-      cursor: pointer;
-
-      &:hover {
-        min-height: 65vh;
-      }
+      transform: rotate(90deg) translateZ(100px) scale(0.9) translateY(-3vh);
 
       /* Staggered Variations */
       &.slower {
-        transform: rotate(90deg) translateZ(-0.2px) scale(1.1) translateY(-10vh);
+        transform: rotate(90deg) translateZ(-200px) scale(1.1) translateY(-10vh);
       }
 
       &.slower1 {
-        transform: rotate(90deg) translateZ(-0.25px) scale(1.05) translateY(8vh);
+        transform: rotate(90deg) translateZ(-250px) scale(1.05) translateY(8vh);
       }
 
       &.slower2 {
-        transform: rotate(90deg) translateZ(-0.3px) scale(1.3) translateY(2vh);
+        transform: rotate(90deg) translateZ(-300px) scale(1.3) translateY(2vh);
       }
 
       &.faster {
-        transform: rotate(90deg) translateZ(0.15px) scale(0.8) translateY(14vh);
+        transform: rotate(90deg) translateZ(150px) scale(0.8) translateY(14vh);
       }
 
       &.faster1 {
-        transform: rotate(90deg) translateZ(0.05px) scale(0.8) translateY(10vh);
+        transform: rotate(90deg) translateZ(50px) scale(0.8) translateY(10vh);
       }
 
       &.vertical {
-        transform: rotate(90deg) translateZ(-0.15px) scale(1.15) translateY(0);
+        transform: rotate(90deg) translateZ(-150px) scale(1.15) translateY(0);
       }
 
       .item-content {
@@ -481,8 +491,10 @@ body {
   mix-blend-mode: difference;
   background: #fff !important;
   color: #fff !important;
+  transition: color 0.3s ease;
 
-  &:hover {
+  &:hover,
+  &:active {
     color: #000 !important;
   }
 }
