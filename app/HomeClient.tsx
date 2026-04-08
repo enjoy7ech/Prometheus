@@ -14,6 +14,10 @@ ScrollTrigger.config({
   limitCallbacks: true
 });
 
+if (typeof window !== 'undefined') {
+  ScrollTrigger.normalizeScroll(true);
+}
+
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
   const maskRef = useRef<LoadingMaskHandle>(null);
@@ -25,16 +29,25 @@ export default function Home() {
           const vd = document.querySelector('#banner-v') as HTMLVideoElement;
           const handleLoaded = () => {
             maskRef.current?.hide().then(() => {
+              if (vd && (!vd.duration || isNaN(vd.duration))) {
+                // If duration is still not available, wait a bit more or refresh later
+                vd.addEventListener('loadedmetadata', () => ScrollTrigger.refresh(), { once: true });
+              } else {
+                ScrollTrigger.refresh();
+              }
               resolve(1);
             });
           };
 
-          if (vd && vd.readyState >= 3) {
-            handleLoaded();
-          } else if (vd) {
-            vd.oncanplaythrough = handleLoaded;
-            // Safe fallback
-            setTimeout(handleLoaded, 4000);
+          if (vd) {
+            if (vd.readyState >= 3) {
+              handleLoaded();
+            } else {
+              vd.addEventListener('canplaythrough', handleLoaded, { once: true });
+              vd.addEventListener('loadedmetadata', () => ScrollTrigger.refresh());
+              // Safe fallback
+              setTimeout(handleLoaded, 4000);
+            }
           } else {
             handleLoaded();
           }
@@ -100,25 +113,33 @@ export default function Home() {
         ScrollTrigger.create({
           trigger: '#scroll-trigger-container',
           start: 'top top',
-          end: Y_PIXEL,
+          end: () => (vd.duration || 10) * SECOND_LENGTH,
           pin: true,
-          scrub: 1.5, // Smoother scrub
+          scrub: 1, // Normalized scrub
+          anticipatePin: 1,
           onUpdate: (self) => {
             if (self.progress > 0.005) {
               gsap.to('.scroll-hint', { opacity: 0, duration: 0.8, pointerEvents: 'none' });
             }
-            if (!isNaN(self.progress * vd.duration) && vd.duration > 0) {
-              vd.currentTime = self.progress * vd.duration;
-              tl.seek(vd.currentTime).pause();
+            if (vd.duration > 0) {
+              const targetTime = self.progress * vd.duration;
+              vd.currentTime = targetTime;
+              tl.seek(targetTime).pause();
             }
           }
         });
+
+        // Ensure refresh once more when everything is definitely ready
+        window.addEventListener('load', () => ScrollTrigger.refresh());
       });
   }, []);
 
   const fixedContent = (
     <>
-      <video className="bg-video w-full h-full object-cover fixed inset-0 z-0" id="banner-v" src="/banner-v.webm" muted playsInline loop preload="auto" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" style={{ background: '#000' }}></video>
+      <video className="bg-video w-full h-full object-cover fixed inset-0 z-0" id="banner-v" muted playsInline loop preload="auto" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" style={{ background: '#000' }}>
+        <source src="/banner-v.mp4" type="video/mp4" />
+        <source src="/banner-v.webm" type="video/webm" />
+      </video>
       {/* Cinematic & Oversized Scroll Hint - Centered */}
       <div className="scroll-hint fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-12 z-20 pointer-events-none opacity-0">
         <div className="relative w-20 h-32 border-[3px] border-white/20 rounded-full flex justify-center group scale-110">
