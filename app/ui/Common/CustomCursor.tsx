@@ -23,29 +23,18 @@ export default function CustomCursor() {
         return;
     }
 
-    const mouse = { x: 0, y: 0 };
-    const ringPos = { x: 0, y: 0 };
+    const xDotTo = gsap.quickTo(dot, 'x', { duration: 0.08, ease: 'power3' });
+    const yDotTo = gsap.quickTo(dot, 'y', { duration: 0.08, ease: 'power3' });
+    const xRingTo = gsap.quickTo(ring, 'x', { duration: 0.4, ease: 'power3' });
+    const yRingTo = gsap.quickTo(ring, 'y', { duration: 0.4, ease: 'power3' });
 
     const onMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      xDotTo(e.clientX);
+      yDotTo(e.clientY);
+      xRingTo(e.clientX);
+      yRingTo(e.clientY);
 
-      // Immediate dot follow
-      gsap.to(dot, {
-        x: mouse.x,
-        y: mouse.y,
-        duration: 0.1,
-        opacity: 1
-      });
-
-      // Smooth ring follow with lag
-      gsap.to(ring, {
-        x: mouse.x,
-        y: mouse.y,
-        duration: 0.7,
-        ease: 'power3.out',
-        opacity: 1
-      });
+      gsap.set([dot, ring], { opacity: 1 });
     };
 
     const handleHover = (isHovering: boolean) => {
@@ -123,6 +112,7 @@ export default function CustomCursor() {
           pointerEvents: 'none',
           zIndex: 999998,
           transform: 'translate(-50%, -50%)',
+          willChange: 'transform',
           opacity: 0,
           transition: 'opacity 0.3s ease',
           mixBlendMode: 'difference'
@@ -141,6 +131,7 @@ export default function CustomCursor() {
           pointerEvents: 'none',
           zIndex: 999999,
           transform: 'translate(-50%, -50%)',
+          willChange: 'transform',
           opacity: 0,
           transition: 'opacity 0.3s ease',
           mixBlendMode: 'difference'

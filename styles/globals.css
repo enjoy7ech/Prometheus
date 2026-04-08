@@ -39,11 +39,6 @@ body {
   font-family: f_sc, Arial, Helvetica, sans-serif;
 }
 
-@media (hover: hover) {
-  * {
-    cursor: none !important;
-  }
-}
 
 @layer base {
   * {
@@ -383,7 +378,8 @@ body {
     touch-action: none;
     perspective: 1000px;
     transform-style: preserve-3d;
-    padding-bottom: 25vh;
+    padding-top: 20vh;
+    padding-bottom: 50vh;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {

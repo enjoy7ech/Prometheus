@@ -10,6 +10,7 @@ import JPClient from '@/app/article/JP/JPClient';
 import JPFGClient from '@/app/article/JP-FG/JPFGClient';
 import XTClient from '@/app/article/XT/XTClient';
 import SHClient from '@/app/article/SH/SHClient';
+import ZZClient from '@/app/article/ZZ/ZZClient';
 
 export default function ArticleOverlay() {
   const { activeArticle } = useNav();
@@ -23,6 +24,7 @@ export default function ArticleOverlay() {
       case 'JP-FG': return JPFGClient;
       case 'XT': return XTClient;
       case 'SH': return SHClient; // Added ShiHu
+      case 'ZZ': return ZZClient;
       default: return null;
     }
   }, [activeArticle]);
@@ -54,7 +56,8 @@ export default function ArticleOverlay() {
         'JP': '日本行：玫瑰下的 Stille Nacht',
         'JP-FG': '上海到福冈：一次惊心动魄的海上冒险',
         'XT': '斜塘：重拾旧时的街道记忆',
-        'SH': '石湖：越堤之上的湖光山色'
+        'SH': '石湖：越堤之上的湖光山色',
+        'ZZ': '周庄：梦江南'
       };
       const baseTitle = titles[activeArticle] || '行者无悔';
       document.title = `${baseTitle} | 行者无悔`;

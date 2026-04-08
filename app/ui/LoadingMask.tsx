@@ -59,10 +59,10 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
 
       gsap.to('.shimmer', {
         x: '100%',
-        duration: 2.5,
+        duration: 3, // Slower shimmer to reduce recalculations
         repeat: -1,
         ease: 'none',
-        repeatDelay: 1
+        repeatDelay: 1.5
       });
     }
   }, [canEnter]);
@@ -132,10 +132,10 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
         {/* Entrance Button */}
         {canEnter && (
           <div className="enter-btn-wrapper relative z-30 flex flex-col items-center cursor-pointer" onClick={handleEnter}>
-             <div className="absolute inset-0 -m-20 border border-white/5 rounded-full scale-110 animate-[spin_20s_linear_infinite]"></div>
-             <div className="absolute inset-0 -m-16 border border-white/10 rounded-full scale-100 animate-[spin_15s_linear_infinite_reverse]"></div>
+             <div className="absolute inset-0 -m-20 border border-white/5 rounded-full scale-110 animate-[spin_20s_linear_infinite] will-change-transform pointer-events-none"></div>
+             <div className="absolute inset-0 -m-16 border border-white/10 rounded-full scale-100 animate-[spin_15s_linear_infinite_reverse] will-change-transform pointer-events-none"></div>
 
-             <div className="group relative overflow-hidden px-16 py-10 backdrop-blur-3xl transition-all duration-700">
+             <div className="group relative overflow-hidden px-16 py-10 bg-[#0a0a0a]/90 border border-white/5 transition-all duration-700">
                 {/* Minimalist Top/Bottom Double Borders */}
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10 group-hover:bg-white/40 transition-all duration-700"></div>
                 <div className="absolute top-[4px] left-[15%] w-[70%] h-[1px] bg-white/5"></div>
@@ -143,7 +143,7 @@ export default function LoadingMask({ ref }: { ref: Ref<unknown> }) {
                 <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/10 group-hover:bg-white/40 transition-all duration-700"></div>
                 <div className="absolute bottom-[4px] left-[15%] w-[70%] h-[1px] bg-white/5"></div>
 
-                <div className="shimmer absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none"></div>
+                <div className="shimmer absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/[0.03] to-transparent pointer-events-none"></div>
 
                 <div className="flex flex-col items-center gap-6 relative">
                   <div className="flex flex-col items-center gap-4 md:gap-6 transition-all duration-700">
