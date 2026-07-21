@@ -289,7 +289,7 @@ export default function Header() {
                 }}
               >
                 <div className="item-content">
-                  <img src={photo.url} alt="photo" draggable="false" />
+                  <img src={resolveMediaUrl(photo.url)} alt="photo" draggable="false" />
                   <div className="photo-title">{photo.place}</div>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import PhotoGallery from '@/app/ui/PhotoGallery';
 import SRImage from '@/app/ui/Common/SRImage';
 import TOC from '@/app/ui/Common/TOC';
 import ArticleNextFooter from '@/app/ui/Common/ArticleNextFooter';
+import { resolveMediaUrl } from '@/utils/helper';
 
 export default function ZZClient() {
   const baseUrl = '/blog/SuZhou/ZhouZhuang/';
@@ -112,7 +113,7 @@ export default function ZZClient() {
                 className="block mx-auto max-h-[60vh] w-full rounded-lg shadow-2xl my-10"
                 controls
                 playsInline
-                src={`${baseUrl}copy_AE4607F6-04AC-46E8-A433-B543E1CDF0D6.MOV`}
+                src={resolveMediaUrl(`${baseUrl}copy_AE4607F6-04AC-46E8-A433-B543E1CDF0D6.MOV`)}
             ></video>
           </section>
 

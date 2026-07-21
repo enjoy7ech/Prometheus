@@ -3,6 +3,7 @@ import styles from './index.module.css';
 import { gsap } from 'gsap';
 import { flushSync } from 'react-dom';
 import { Draggable } from 'gsap/Draggable';
+import { resolveMediaUrl } from '@/utils/helper';
 
 gsap.registerPlugin(Draggable);
 
@@ -176,7 +177,7 @@ export default function SRCard({ ref }: { ref: Ref<unknown> }) {
           {photo?.url && (
             <>
               <div className={styles.cardFront}>
-                <img ref={imgRef} src={photo?.url} className={styles.img} alt="" />
+                <img ref={imgRef} src={resolveMediaUrl(photo?.url)} className={styles.img} alt="" />
                 {/* <div className={styles.spotlight}></div> */}
               </div>
               <div className={styles.cardRear}>
