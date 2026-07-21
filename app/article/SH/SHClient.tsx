@@ -3,6 +3,7 @@
 import ModernArticleLayout from '@/app/ui/Layout/ModernArticleLayout';
 import SRImage from '@/app/ui/Common/SRImage';
 import ArticleNextFooter from '@/app/ui/Common/ArticleNextFooter';
+import { resolveMediaUrl } from '@/utils/helper';
 
 const SLIDES = [
   {
@@ -16,8 +17,8 @@ const SLIDES = [
     color: "#4A5255",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4987.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4987.JPG"
+    url: "/blog/SuZhou/ShiHu/IMG_4987.JPG",
+    image: "/blog/SuZhou/ShiHu/IMG_4987.JPG"
   },
   {
     id: 1,
@@ -30,8 +31,8 @@ const SLIDES = [
     color: "#384145",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4988.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4988.JPG"
+    url: "/blog/SuZhou/ShiHu/IMG_4988.JPG",
+    image: "/blog/SuZhou/ShiHu/IMG_4988.JPG"
   },
   {
     id: 2,
@@ -44,8 +45,8 @@ const SLIDES = [
     color: "#2F3539",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4989.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4989.JPG"
+    url: "/blog/SuZhou/ShiHu/IMG_4989.JPG",
+    image: "/blog/SuZhou/ShiHu/IMG_4989.JPG"
   },
   {
     id: 3,
@@ -58,8 +59,8 @@ const SLIDES = [
     color: "#424A3E",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4991.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4991.JPG"
+    url: "/blog/SuZhou/ShiHu/IMG_4991.JPG",
+    image: "/blog/SuZhou/ShiHu/IMG_4991.JPG"
   },
   {
     id: 4,
@@ -72,8 +73,8 @@ const SLIDES = [
     color: "#353B3C",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4992.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4992.JPG"
+    url: "/blog/SuZhou/ShiHu/IMG_4992.JPG",
+    image: "/blog/SuZhou/ShiHu/IMG_4992.JPG"
   },
   {
     id: 5,
@@ -86,8 +87,8 @@ const SLIDES = [
     color: "#31382F",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4993.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4993.JPG"
+    url: "/blog/SuZhou/ShiHu/IMG_4993.JPG",
+    image: "/blog/SuZhou/ShiHu/IMG_4993.JPG"
   },
   {
     id: 6,
@@ -100,8 +101,8 @@ const SLIDES = [
     color: "#3A3E40",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4994.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4994.JPG"
+    url: "/blog/SuZhou/ShiHu/IMG_4994.JPG",
+    image: "/blog/SuZhou/ShiHu/IMG_4994.JPG"
   },
   {
     id: 7,
@@ -114,8 +115,8 @@ const SLIDES = [
     color: "#2B2E33",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4995.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/ShiHu/IMG_4995.JPG"
+    url: "/blog/SuZhou/ShiHu/IMG_4995.JPG",
+    image: "/blog/SuZhou/ShiHu/IMG_4995.JPG"
   }
 ];
 
@@ -214,7 +215,7 @@ export default function SHClient() {
           单帧的图片往往难以捕捉石湖那种流动的韵律。于是我尝试记录下这段影像。风吹过湖面带动的不仅是水波，还有那不可名状的江南古意。
         </p>
         <video
-          src="https://io.dongzx.lol/blog/SuZhou/ShiHu/copy_D38BC213-BB77-458B-BC2C-BC4F82CABD3D.MOV"
+          src={resolveMediaUrl('/blog/SuZhou/ShiHu/copy_D38BC213-BB77-458B-BC2C-BC4F82CABD3D.MOV')}
           controls
           className="w-full rounded-xl shadow-2xl my-10"
         />

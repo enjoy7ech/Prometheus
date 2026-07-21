@@ -5,6 +5,7 @@ import { useNav } from '@/context/NavContext';
 import { gsap } from 'gsap';
 import smoke from '@/utils/UI/smoke';
 import { Draggable } from 'gsap/Draggable';
+import { resolveMediaUrl } from '@/utils/helper';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -66,7 +67,7 @@ export default function Header() {
 
       fetch(`/config/whereToGo.json`, { cache: 'no-cache' }).then(async (res) => {
         const ps = await res.json();
-        setPhotos(ps);
+        setPhotos(ps.map((photo: { url: string }) => ({ ...photo, url: resolveMediaUrl(photo.url) })));
       });
 
       tl.to(planeRef.current, { color: '#fff', duration: 0 }).to(

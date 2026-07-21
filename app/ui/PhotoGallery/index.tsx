@@ -4,6 +4,7 @@ import styles from './index.module.css';
 import { gsap } from 'gsap';
 import { flushSync } from 'react-dom';
 import SRCard, { SRCardHandle } from '@/app/ui/SRCard';
+import { resolveMediaUrl } from '@/utils/helper';
 
 // import ExifReader from 'exifreader';
 
@@ -81,7 +82,7 @@ export default function PhotoGallery({ album, onReady }: { album: string; onRead
     if (album)
       fetch(`/config/${album}.json`, { cache: 'no-cache' }).then(async (res) => {
         const data = await res.json();
-        const ps = data.map((p: any, i: number) => ({ ...p, id: i }));
+        const ps = data.map((p: any, i: number) => ({ ...p, id: i, url: resolveMediaUrl(p.url) }));
         setPhotos(ps);
         onReady?.();
       });

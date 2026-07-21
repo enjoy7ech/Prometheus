@@ -6,7 +6,7 @@ import TOC from '@/app/ui/Common/TOC';
 import ArticleNextFooter from '@/app/ui/Common/ArticleNextFooter';
 
 export default function ZZClient() {
-  const baseUrl = 'https://io.dongzx.lol/blog/SuZhou/ZhouZhuang/';
+  const baseUrl = '/blog/SuZhou/ZhouZhuang/';
 
   return (
     <div className={styles.article}>

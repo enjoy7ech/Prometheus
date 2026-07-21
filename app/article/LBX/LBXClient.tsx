@@ -4,6 +4,7 @@ import PhotoGallery from '@/app/ui/PhotoGallery';
 import SRImage from '@/app/ui/Common/SRImage';
 import TOC from '@/app/ui/Common/TOC';
 import ArticleNextFooter from '@/app/ui/Common/ArticleNextFooter';
+import { resolveMediaUrl } from '@/utils/helper';
 
 export default function LBXClient() {
   return (
@@ -28,7 +29,7 @@ export default function LBXClient() {
               className="w-[85cqw] mx-auto rounded-lg shadow-md my-8 hover:scale-[1.02] transition-transform duration-500"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/SuZhou/LinYanShan/IMG_4471.JPG',
+                url: '/blog/SuZhou/LinYanShan/IMG_4471.JPG',
                 bgPos: 'center',
                 position: '苏州-灵岩山',
                 title: '入山',
@@ -55,7 +56,7 @@ export default function LBXClient() {
                 className="left w-1/2 rounded-lg shadow-sm mr-6 mb-4"
                 photo={{
                   id: 2,
-                  url: 'https://io.dongzx.lol/blog/SuZhou/LinYanShan/IMG_4472.JPG',
+                  url: '/blog/SuZhou/LinYanShan/IMG_4472.JPG',
                   bgPos: 'center',
                   position: '灵白线-中段',
                   title: '攀越',
@@ -76,7 +77,7 @@ export default function LBXClient() {
               className="w-full rounded-lg shadow-md my-8"
               photo={{
                 id: 3,
-                url: 'https://io.dongzx.lol/blog/SuZhou/LinYanShan/IMG_4473.JPG',
+                url: '/blog/SuZhou/LinYanShan/IMG_4473.JPG',
                 bgPos: 'center',
                 position: '光影山道',
                 title: '侧影',
@@ -100,7 +101,7 @@ export default function LBXClient() {
                 className="right w-1/3 rounded-lg shadow-sm ml-6 mb-4"
                 photo={{
                   id: 4,
-                  url: 'https://io.dongzx.lol/blog/SuZhou/LinYanShan/IMG_4474.JPG',
+                  url: '/blog/SuZhou/LinYanShan/IMG_4474.JPG',
                   bgPos: 'center',
                   position: '山脊暮色',
                   title: '微光',
@@ -121,7 +122,7 @@ export default function LBXClient() {
               className="w-full rounded-lg shadow-md my-8"
               photo={{
                 id: 5,
-                url: 'https://io.dongzx.lol/blog/SuZhou/LinYanShan/IMG_4475.JPG',
+                url: '/blog/SuZhou/LinYanShan/IMG_4475.JPG',
                 bgPos: 'center',
                 position: '白马涧-终点',
                 title: '归处',
@@ -141,7 +142,7 @@ export default function LBXClient() {
               以前总觉得视频就是信手一拍的素材，但这次走完灵白线，我突然想尝试着把这些细碎的动态串联起来。虽然手艺还很生疏，分不清节奏，甚至剪出来的画面还有些生涩，但这种一点点打磨、回看的感觉，倒也挺像是在山石间寻找落脚点。
             </p>
             <video
-              src="https://io.dongzx.lol/blog/SuZhou/LinYanShan/IMG_4476.MOV"
+              src={resolveMediaUrl('/blog/SuZhou/LinYanShan/IMG_4476.MOV')}
               controls
               className="w-full rounded-lg shadow-lg my-8"
             />

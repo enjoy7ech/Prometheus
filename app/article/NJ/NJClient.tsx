@@ -28,7 +28,7 @@ export default function NJClient() {
               className="w-[85cqw] mx-auto rounded-lg shadow-md my-8 hover:scale-[1.02] transition-transform duration-500"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/NanJing/IMG_3516.jpg',
+                url: '/blog/NanJing/IMG_3516.jpg',
                 bgPos: 'center',
                 position: '南京-新街口',
                 title: '路口',
@@ -55,7 +55,7 @@ export default function NJClient() {
                 className="left w-1/2 rounded-lg shadow-sm mr-6 mb-4"
                 photo={{
                   id: 2,
-                  url: 'https://io.dongzx.lol/blog/NanJing/IMG_3515.jpg',
+                  url: '/blog/NanJing/IMG_3515.jpg',
                   bgPos: 'center',
                   position: '南京-新街口',
                   title: '巷口',
@@ -86,7 +86,7 @@ export default function NJClient() {
                 className="right w-1/3 rounded-lg shadow-sm ml-6 mb-4"
                 photo={{
                   id: 3,
-                  url: 'https://io.dongzx.lol/blog/NanJing/IMG_3519.jpg',
+                  url: '/blog/NanJing/IMG_3519.jpg',
                   bgPos: 'center',
                   position: '南京-龙吟九品',
                   title: '龙吟九品',
@@ -107,7 +107,7 @@ export default function NJClient() {
               className="w-full rounded-lg shadow-md my-8"
               photo={{
                 id: 4,
-                url: 'https://io.dongzx.lol/blog/NanJing/IMG_3517.jpg',
+                url: '/blog/NanJing/IMG_3517.jpg',
                 bgPos: 'center',
                 position: '南京-日常',
                 title: '莫愁的态度',

@@ -13,3 +13,13 @@ export function whenDOMReady() {
     );
   });
 }
+
+export function resolveMediaUrl(url?: string) {
+  if (!url) return '';
+  if (/^(https?:)?\/\//i.test(url) || url.startsWith('data:')) return url;
+
+  const baseUrl = ((process.env && process.env.NEXT_PUBLIC_MEDIA_BASE_URL) || '').replace(/\/$/, '');
+  const normalizedPath = url.startsWith('/') ? url : `/${url}`;
+
+  return baseUrl ? `${baseUrl}${normalizedPath}` : normalizedPath;
+}

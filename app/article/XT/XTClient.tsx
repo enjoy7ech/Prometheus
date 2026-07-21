@@ -16,8 +16,8 @@ const SLIDES = [
     color: "#4A453C",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4309.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4309.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4309.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4309.JPG"
   },
   {
     id: 1,
@@ -30,8 +30,8 @@ const SLIDES = [
     color: "#383431",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4310.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4310.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4310.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4310.JPG"
   },
   {
     id: 2,
@@ -44,8 +44,8 @@ const SLIDES = [
     color: "#2F2E2C",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4311.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4311.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4311.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4311.JPG"
   },
   {
     id: 3,
@@ -58,8 +58,8 @@ const SLIDES = [
     color: "#423B34",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4312.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4312.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4312.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4312.JPG"
   },
   {
     id: 4,
@@ -72,8 +72,8 @@ const SLIDES = [
     color: "#35312C",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4313.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4313.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4313.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4313.JPG"
   },
   {
     id: 5,
@@ -86,8 +86,8 @@ const SLIDES = [
     color: "#31352A",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4314.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4314.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4314.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4314.JPG"
   },
   {
     id: 6,
@@ -100,8 +100,8 @@ const SLIDES = [
     color: "#3A3E40",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4315.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4315.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4315.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4315.JPG"
   },
   {
     id: 7,
@@ -114,8 +114,8 @@ const SLIDES = [
     color: "#2B2E33",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4316.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4316.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4316.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4316.JPG"
   },
   {
     id: 8,
@@ -128,8 +128,8 @@ const SLIDES = [
     color: "#2C2D2B",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4317.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4317.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4317.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4317.JPG"
   },
   {
     id: 9,
@@ -142,8 +142,8 @@ const SLIDES = [
     color: "#463A2F",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4320.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4320.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4320.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4320.JPG"
   },
   {
     id: 10,
@@ -156,8 +156,8 @@ const SLIDES = [
     color: "#663322",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4321.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4321.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4321.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4321.JPG"
   },
   {
     id: 11,
@@ -170,8 +170,8 @@ const SLIDES = [
     color: "#554422",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4322.jpg",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4322.jpg"
+    url: "/blog/SuZhou/XieTang/IMG_4322.jpg",
+    image: "/blog/SuZhou/XieTang/IMG_4322.jpg"
   },
   {
     id: 12,
@@ -184,8 +184,8 @@ const SLIDES = [
     color: "#4A4D32",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4327.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4327.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4327.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4327.JPG"
   },
   {
     id: 13,
@@ -198,8 +198,8 @@ const SLIDES = [
     color: "#5C3D2E",
     bgPos: 'center',
     description: '',
-    url: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4330.JPG",
-    image: "https://io.dongzx.lol/blog/SuZhou/XieTang/IMG_4330.JPG"
+    url: "/blog/SuZhou/XieTang/IMG_4330.JPG",
+    image: "/blog/SuZhou/XieTang/IMG_4330.JPG"
   }
 ];
 

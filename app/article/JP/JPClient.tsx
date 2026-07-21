@@ -4,6 +4,7 @@ import PhotoGallery from '@/app/ui/PhotoGallery';
 import SRImage from '@/app/ui/Common/SRImage';
 import TOC from '@/app/ui/Common/TOC';
 import ArticleNextFooter from '@/app/ui/Common/ArticleNextFooter';
+import { resolveMediaUrl } from '@/utils/helper';
 
 export default function JPClient() {
   return (
@@ -28,7 +29,7 @@ export default function JPClient() {
                 className="right"
                 photo={{
                   id: 1,
-                  url: 'https://io.dongzx.lol/blog/jp/IMG_2980.JPG',
+                  url: '/blog/jp/IMG_2980.JPG',
                   bgPos: 'center',
                   position: '',
                   title: '南京禄口机场',
@@ -62,7 +63,7 @@ export default function JPClient() {
               className="left"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp/IMG_2982.JPG',
+                url: '/blog/jp/IMG_2982.JPG',
                 bgPos: 'center',
                 position: '',
                 title: '成田机场',
@@ -88,7 +89,7 @@ export default function JPClient() {
                 className="flex-1 w-1/3"
                 photo={{
                   id: 1,
-                  url: 'https://io.dongzx.lol/blog/jp/IMG_2987.JPG',
+                  url: '/blog/jp/IMG_2987.JPG',
                   bgPos: 'center',
                   position: '',
                   title: '秋葉原駅',
@@ -102,7 +103,7 @@ export default function JPClient() {
                 className="w-1/3"
                 photo={{
                   id: 1,
-                  url: 'https://io.dongzx.lol/blog/jp/IMG_2990.JPG',
+                  url: '/blog/jp/IMG_2990.JPG',
                   bgPos: 'center',
                   position: '',
                   title: '街景',
@@ -120,7 +121,7 @@ export default function JPClient() {
                 className="w-[85cqw] mx-auto rounded-lg shadow-md my-4"
                 photo={{
                   id: 1,
-                  url: 'https://io.dongzx.lol/blog/jp/IMG_2988.JPG',
+                  url: '/blog/jp/IMG_2988.JPG',
                   bgPos: 'center',
                   position: '',
                   title: '',
@@ -143,7 +144,7 @@ export default function JPClient() {
               className="w-[85cqw] mx-auto rounded-lg shadow-md my-4"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp/IMG_2994.JPG',
+                url: '/blog/jp/IMG_2994.JPG',
                 bgPos: 'center',
                 position: '',
                 title: '',
@@ -170,7 +171,7 @@ export default function JPClient() {
               className="block mx-auto max-w-[80%] max-h-[60vh] my-6 rounded-lg shadow-lg border border-gray-200"
               controls
               playsInline
-              src="https://io.dongzx.lol/blog/jp/IMG_3001.MOV"
+              src={resolveMediaUrl('/blog/jp/IMG_3001.MOV')}
             ></video>
             <p>热完身走回酒店, 朋友们刚好洗漱完毕走到楼下, 我们便一起出发去买应援棒.</p>
           </section>
@@ -189,7 +190,7 @@ export default function JPClient() {
                   className="w-full rounded-lg shadow-md"
                   photo={{
                     id: 1,
-                    url: 'https://io.dongzx.lol/blog/jp/IMG_3004.JPG',
+                    url: '/blog/jp/IMG_3004.JPG',
                     bgPos: 'center',
                     position: '',
                     title: 'MyGo!!!',
@@ -206,7 +207,7 @@ export default function JPClient() {
                   className="w-full rounded-lg shadow-md"
                   photo={{
                     id: 1,
-                    url: 'https://io.dongzx.lol/blog/jp/IMG_3003.JPG',
+                    url: '/blog/jp/IMG_3003.JPG',
                     bgPos: 'center',
                     position: '',
                     title: '这个买的人还挺多',
@@ -228,7 +229,7 @@ export default function JPClient() {
                   className="w-full rounded-lg shadow-md"
                   photo={{
                     id: 1,
-                    url: 'https://io.dongzx.lol/blog/jp/IMG_3007.JPG',
+                    url: '/blog/jp/IMG_3007.JPG',
                     bgPos: 'center',
                     position: '',
                     title: 'Animate',
@@ -245,7 +246,7 @@ export default function JPClient() {
                   className="w-full rounded-lg shadow-md"
                   photo={{
                     id: 1,
-                    url: 'https://io.dongzx.lol/blog/jp/IMG_3006.JPG',
+                    url: '/blog/jp/IMG_3006.JPG',
                     bgPos: 'center',
                     position: '',
                     title: 'Ave Mujica',
@@ -278,14 +279,14 @@ export default function JPClient() {
                 className="flex-[1.5] max-h-[60vh] w-full rounded-lg shadow-xl"
                 controls
                 playsInline
-                src="https://io.dongzx.lol/blog/jp/IMG_3014.MOV"
+                src={resolveMediaUrl('/blog/jp/IMG_3014.MOV')}
               ></video>
 
               <SRImage
                 className="flex-1 rounded-lg shadow-md"
                 photo={{
                   id: 1,
-                  url: 'https://io.dongzx.lol/blog/jp/IMG_3017.jpg',
+                  url: '/blog/jp/IMG_3017.jpg',
                   bgPos: 'center',
                   position: '',
                   title: 'SHOUT！',
@@ -307,7 +308,7 @@ export default function JPClient() {
               className="w-[90cqw] mx-auto rounded-lg shadow-md my-8"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp/IMG_3020.JPG',
+                url: '/blog/jp/IMG_3020.JPG',
                 bgPos: 'center',
                 position: '',
                 title: '一进来就看见祥子垮了个批脸, shit',
@@ -323,7 +324,7 @@ export default function JPClient() {
               className="block mx-auto max-h-[75vh] w-auto my-10 rounded-xl shadow-2xl border-4 border-red-500/20"
               controls
               playsInline
-              src="https://io.dongzx.lol/blog/jp/IMG_3190.MOV"
+              src={resolveMediaUrl('/blog/jp/IMG_3190.MOV')}
             ></video>
             <p>一边偷拍, 一边切棒子颜色真是要我命. . . </p>
             <p>猛站三个小时, 返场3次, 现场的热情也没有丝毫减弱, 这就是二刺螈的实力!</p>
@@ -331,7 +332,7 @@ export default function JPClient() {
               className="w-[85cqw] mx-auto rounded-lg shadow-lg my-8"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp/IMG_3030.JPG',
+                url: '/blog/jp/IMG_3030.JPG',
                 bgPos: 'center',
                 position: '',
                 title: '素敵な夜をありがとう',
@@ -355,7 +356,7 @@ export default function JPClient() {
               className="w-full"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp/IMG_3044.JPG',
+                url: '/blog/jp/IMG_3044.JPG',
                 bgPos: 'center',
                 position: '',
                 title: 'か米村',
@@ -379,7 +380,7 @@ export default function JPClient() {
               className="w-1/2 mx-auto"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp/IMG_3104.jpg',
+                url: '/blog/jp/IMG_3104.jpg',
                 bgPos: 'center',
                 position: '',
                 title: '没错, 是我干的',
@@ -396,7 +397,7 @@ export default function JPClient() {
               className="w-[85cqw] mx-auto rounded-lg shadow-md my-8"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp/IMG_3054.JPG',
+                url: '/blog/jp/IMG_3054.JPG',
                 bgPos: 'center',
                 position: '',
                 title: '现场',
@@ -413,7 +414,7 @@ export default function JPClient() {
               className="w-[50cqw] mx-auto rounded-lg shadow-md my-8 transition-transform hover:rotate-2"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp/IMG_3104.jpg',
+                url: '/blog/jp/IMG_3104.jpg',
                 bgPos: 'center',
                 position: '',
                 title: '没错, 是我',
@@ -443,7 +444,7 @@ export default function JPClient() {
               className="w-full"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp/IMG_3058.JPG',
+                url: '/blog/jp/IMG_3058.JPG',
                 bgPos: 'center',
                 position: '',
                 title: '返程',

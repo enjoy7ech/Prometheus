@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import PhotoGallery from '@/app/ui/PhotoGallery';
 import SRImage from '@/app/ui/Common/SRImage';
 import TOC from '@/app/ui/Common/TOC';
+import { resolveMediaUrl } from '@/utils/helper';
 
 export default function JPFGClient() {
   return (
@@ -29,7 +30,7 @@ export default function JPFGClient() {
               className="w-[85cqw] mx-auto rounded-lg shadow-md my-8 hover:scale-[1.02] transition-transform duration-500"
               photo={{
                 id: 1,
-                url: 'https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3853.JPG',
+                url: '/blog/jp-Fukuoka/IMG_3853.JPG',
                 bgPos: 'center',
                 position: '',
                 title: '上海港口与邮轮',
@@ -48,7 +49,7 @@ export default function JPFGClient() {
                 className="left w-1/2 rounded-lg shadow-sm mr-6 mb-4"
                 photo={{
                   id: 2,
-                  url: 'https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3849.JPG',
+                  url: '/blog/jp-Fukuoka/IMG_3849.JPG',
                   bgPos: 'center',
                   position: '',
                   title: '从舷窗远眺',
@@ -76,7 +77,7 @@ export default function JPFGClient() {
                 className="right w-1/3 rounded-lg shadow-sm ml-6 mb-4"
                 photo={{
                   id: 3,
-                  url: 'https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3851.jpg',
+                  url: '/blog/jp-Fukuoka/IMG_3851.jpg',
                   bgPos: 'center',
                   position: '',
                   title: '绣球花',
@@ -100,7 +101,7 @@ export default function JPFGClient() {
               className="w-[85cqw] mx-auto rounded-lg shadow-md my-8"
               photo={{
                 id: 4,
-                url: 'https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3852.JPG',
+                url: '/blog/jp-Fukuoka/IMG_3852.JPG',
                 bgPos: 'center',
                 position: '',
                 title: '福冈火车站',
@@ -129,7 +130,7 @@ export default function JPFGClient() {
               整整两天，我们被困在公海上。龙卷风干扰了导航，由于剧烈的颠簸感让我难以行走，大家便只能躺在床上聊天。
             </p>
             <video
-              src="https://io.dongzx.lol/blog/jp-Fukuoka/IMG_3854.mp4"
+              src={resolveMediaUrl('/blog/jp-Fukuoka/IMG_3854.mp4')}
               controls
               className="w-full rounded-lg shadow-lg my-8"
             />

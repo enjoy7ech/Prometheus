@@ -1,3 +1,7 @@
+declare const process: {
+  env?: Record<string, string | undefined>;
+};
+
 interface Photo {
   id: number;
   url: string;

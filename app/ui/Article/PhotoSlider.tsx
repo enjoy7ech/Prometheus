@@ -5,6 +5,7 @@ import styles from './PhotoSlider.module.css';
 import { gsap } from 'gsap';
 import { Observer } from 'gsap/Observer';
 import SRImage from '@/app/ui/Common/SRImage';
+import { resolveMediaUrl } from '@/utils/helper';
 
 export interface Slide {
   name: string;
@@ -161,7 +162,7 @@ export default function PhotoSlider({
                     <SRImage
                       photo={{
                         id: idx,
-                        url: slides[idx].image,
+                        url: resolveMediaUrl(slides[idx].image),
                         bgPos: 'center',
                         position: photoLocation || '',
                         title: slides[idx].name,
